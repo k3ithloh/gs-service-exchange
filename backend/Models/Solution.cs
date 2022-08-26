@@ -8,8 +8,9 @@ public class Solution
     {
     }
     
-    public Solution(string solutiontitle, string organisation, string description, DateTime releasedate, int rating, string category)
+    public Solution(int solutionId, string solutiontitle, string organisation, string description, DateTime releasedate, int rating, string category)
     {
+        SolutionId = solutionId;
         SolutionTitle = solutiontitle;
         Organisation = organisation;
         Description = description;
@@ -19,6 +20,7 @@ public class Solution
     }
 
     [Key]
+    public int SolutionId { get; set; }
     public string SolutionTitle { get; set; }
     
     public string Organisation { get; set; }
