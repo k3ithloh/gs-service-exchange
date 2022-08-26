@@ -42,4 +42,38 @@ public class DataSeeder
             _db.SaveChanges();
         }
     }
+
+    public void SeedSolutions()
+    {
+        string data = GetData("Solutions");
+        var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
+        foreach (var item in items)
+        {
+            int rating = int.Parse(item["Rating"]);
+            DateTime releaseDate = DateTime.Parse(item["ReleaseDate"]);
+            var s = new Solution(item["SolutionTitle"], 
+                                item["Organisation"], 
+                                item["Description"], 
+                                releaseDate, 
+                                rating, 
+                                item["Category"]);
+            _db.Solutions.Add(s);
+            _db.SaveChanges();
+        }
+    }
+
+    public void SeedFeatures()
+    {
+        string data = GetData("Features");
+        var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
+        foreach (var item in items)
+        {
+            var f = new Feature(item["FeatureTitle"], 
+                                item["Description"],
+                                item["SolutionTitle"]);
+            _db.Features.Add(f);
+            _db.SaveChanges();
+        }
+    }
+    
 }

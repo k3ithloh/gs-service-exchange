@@ -13,6 +13,8 @@ public class DataContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<CreditCard> CreditCards { get; set; }
     public DbSet<Stock> Stocks { get; set; }
+    public DbSet<Solution> Solutions { get; set; }
+    public DbSet<Feature> Features { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

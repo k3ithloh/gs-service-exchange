@@ -21,5 +21,15 @@ public class DbInitializer
             var seeder = new DataSeeder(_db, _env);
             seeder.SeedStocks();
         }
+        if (!_db.Solutions.Any())
+        {
+            var seeder = new DataSeeder(_db, _env);
+            seeder.SeedSolutions();
+        }
+        if (!_db.Features.Any())
+        {
+            var seeder = new DataSeeder(_db, _env);
+            seeder.SeedFeatures();
+        }
     }
 }
