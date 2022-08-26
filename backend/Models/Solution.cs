@@ -8,7 +8,7 @@ public class Solution
     {
     }
     
-    public Solution(string solutiontitle, string organization, string description, datetime releasedate, float rating, string category, string solutionfeature)
+    public Solution(string solutiontitle, string organization, string description, DateTime releasedate, int rating, string category)
     {
         SolutionTitle = solutiontitle;
         Organization = organization;
@@ -16,7 +16,6 @@ public class Solution
         ReleaseDate = releasedate;
         Rating = rating;
         Category = category;
-        SolutionFeature = solutionfeature;
     }
 
     [Key]
