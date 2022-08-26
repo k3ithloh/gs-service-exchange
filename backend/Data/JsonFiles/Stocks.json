@@ -1,0 +1,32 @@
+[
+  {
+    "Ticker": "META",
+    "CurrentClose": "162.75",
+    "LastUpdated": "2022-08-24 22:28:08.693 +0800",
+    "Currency": "USD"
+  },
+  {
+    "Ticker": "AMZN",
+    "CurrentClose": "133.77",
+    "LastUpdated": "2022-08-24 22:28:08.693 +0800",
+    "Currency": "USD"
+  },
+  {
+    "Ticker": "AAPL",
+    "CurrentClose": "166.75",
+    "LastUpdated": "2022-08-24 22:28:08.693 +0800",
+    "Currency": "USD"
+  },
+  {
+    "Ticker": "NFLX",
+    "CurrentClose": "230.44",
+    "LastUpdated": "2022-08-24 22:28:08.693 +0800",
+    "Currency": "USD"
+  },
+  {
+    "Ticker": "GOOGL",
+    "CurrentClose": "114.15",
+    "LastUpdated": "2022-08-24 22:28:08.693 +0800",
+    "Currency": "USD"
+  }
+]
