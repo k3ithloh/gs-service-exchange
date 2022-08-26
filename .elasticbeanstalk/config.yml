@@ -1,0 +1,6 @@
+branch-defaults:
+  jon/add-navbar:
+    environment: null
+    group_suffix: null
+global:
+  profile: eb-cli
