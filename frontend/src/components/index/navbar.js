@@ -6,9 +6,9 @@ export default function Navbar() {
     <nav className="flex h-20 items-center justify-between px-4 py-4 drop-shadow-md">
       {/* Logo */}
       <div className="flex items-center justify-start">
-        <a className="text-2xl font-semibold" href="/">
+        <Link className="text-2xl font-semibold" href="/">
           GSX
-        </a>
+        </Link>
       </div>
 
       <div className="w-1/2">
