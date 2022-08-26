@@ -49,9 +49,11 @@ public class DataSeeder
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
+            int solutionId = int.Parse(item["SolutionId"]);
             int rating = int.Parse(item["Rating"]);
             DateTime releaseDate = DateTime.Parse(item["ReleaseDate"]);
-            var s = new Solution(item["SolutionTitle"], 
+            var s = new Solution(solutionId,
+                                item["SolutionTitle"], 
                                 item["Organisation"], 
                                 item["Description"], 
                                 releaseDate, 
@@ -68,9 +70,10 @@ public class DataSeeder
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
+            int solutionId = int.Parse(item["SolutionId"]);
             var f = new Feature(item["FeatureTitle"], 
                                 item["Description"],
-                                item["SolutionTitle"]);
+                                solutionId);
             _db.Features.Add(f);
             _db.SaveChanges();
         }

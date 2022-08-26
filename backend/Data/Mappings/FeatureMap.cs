@@ -8,14 +8,14 @@ public class FeatureMap : BaseMap<Feature>
 {
     public FeatureMap(EntityTypeBuilder<Feature> builder) : base(builder)
     {
-        builder.HasKey(e=>e.FeatureTitle);
-        builder.Property(e=>e.FeatureTitle).HasMaxLength(100).IsRequired();
-        builder.Property(e => e.Description).IsRequired();
-        builder.Property(e => e.SolutionTitle).IsRequired();
+        builder.HasKey(f=>f.FeatureTitle);
+        builder.Property(f=>f.FeatureTitle).HasMaxLength(100).IsRequired();
+        builder.Property(f => f.Description).IsRequired();
+        builder.Property(f => f.SolutionId).IsRequired();
         
-        builder.HasOne(e => e.Solution)
-            .WithMany(e => e.Features)
-            .HasForeignKey(e => e.SolutionTitle)
+        builder.HasOne(f => f.Solution)
+            .WithMany(s => s.Features)
+            .HasForeignKey(f => f.SolutionId)
             .IsRequired();
     }
 }

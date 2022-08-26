@@ -10,11 +10,11 @@ public class Feature
         
     }
     
-    public Feature(string featuretitle, string description, string solutiontitle)
+    public Feature(string featureTitle, string description, int solutionId)
     {
-        FeatureTitle = featuretitle;
+        FeatureTitle = featureTitle;
         Description = description;
-        SolutionTitle = solutiontitle;
+        SolutionId = solutionId;
     }
     
     [Key]
@@ -23,7 +23,7 @@ public class Feature
     public string Description { get; set; }
     
     [ForeignKey("Solution")]
-    public string SolutionTitle { get; set; }
+    public int SolutionId { get; set; }
     
     public virtual Solution? Solution { get; set; }
 }
