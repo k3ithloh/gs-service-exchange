@@ -8,10 +8,10 @@ public class Solution
     {
     }
     
-    public Solution(string solutiontitle, string organization, string description, DateTime releasedate, int rating, string category)
+    public Solution(string solutiontitle, string organisation, string description, DateTime releasedate, int rating, string category)
     {
         SolutionTitle = solutiontitle;
-        Organization = organization;
+        Organisation = organisation;
         Description = description;
         ReleaseDate = releasedate;
         Rating = rating;
@@ -21,7 +21,7 @@ public class Solution
     [Key]
     public string SolutionTitle { get; set; }
     
-    public string Organization { get; set; }
+    public string Organisation { get; set; }
     
     public string Description { get; set; }
     

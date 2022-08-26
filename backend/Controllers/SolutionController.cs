@@ -26,16 +26,18 @@ namespace rainbow_unicorn.Controllers
         public async Task<ActionResult<List<Solution>>> Get()
         {
             return Ok(await _context.Solutions
+                .Include(f=>f.Features)
                 .ToListAsync());
         }
 
 
-        // Get a Solution based on a given SoltutionTitle
+        // Get a Solution based on a given SolutionTitle
         [HttpGet("{SolutionTitle}")]
-        public async Task<ActionResult<List<Stock>>> Get(string solutiontitle)
+        public async Task<ActionResult<List<Stock>>> Get(string solutionTitle)
         {
             var solution = await _context.Solutions
-                .FirstOrDefaultAsync(b => b.SolutionTitle == solutiontitle);
+                .Include(f=>f.Features)
+                .FirstOrDefaultAsync(s => s.SolutionTitle == solutionTitle);
             if (solution == null)
                 return BadRequest("Solution not found.");
             return Ok(solution);
