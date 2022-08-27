@@ -21,10 +21,10 @@ public class DbInitializer
             var seeder = new DataSeeder(_db, _env);
             seeder.SeedStocks();
         }
-        if (!_db.Solutions.Any())
+        if (!_db.Services.Any())
         {
             var seeder = new DataSeeder(_db, _env);
-            seeder.SeedSolutions();
+            seeder.SeedServices();
         }
         if (!_db.Features.Any())
         {

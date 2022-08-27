@@ -19,7 +19,7 @@ public class CustomerMap : BaseMap<Customer>
             .HasForeignKey(e => e.CustomerName)
             .IsRequired();
         
-        builder.HasMany(e => e.SolutionCustomers)
+        builder.HasMany(e => e.ServiceCustomers)
             .WithOne(e => e.Customer)
             .HasForeignKey(e => e.CustomerName)
             .IsRequired();

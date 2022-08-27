@@ -13,10 +13,10 @@ public class DataContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<CreditCard> CreditCards { get; set; }
     public DbSet<Stock> Stocks { get; set; }
-    public DbSet<Solution> Solutions { get; set; }
+    public DbSet<Service> Services { get; set; }
     public DbSet<Feature> Features { get; set; }
     
-    public DbSet<SolutionCustomer> SolutionCustomers { get; set; }
+    public DbSet<ServiceCustomer> ServiceCustomers { get; set; }
     public DbSet<User> Users { get; set; }
     
     public DbSet<UserPayment> UserPayments { get; set; }
@@ -39,8 +39,8 @@ public class DataContext : DbContext
         var stockMap = new StockMap(builder.Entity<Stock>());
         builder.Entity<Stock>();
         
-        var solutionCustomerMap = new SolutionCustomerMap(builder.Entity<SolutionCustomer>());
-        builder.Entity<SolutionCustomer>();
+        var serviceCustomerMap = new ServiceCustomerMap(builder.Entity<ServiceCustomer>());
+        builder.Entity<ServiceCustomer>();
         
         var userMap = new UserMap(builder.Entity<User>());
         builder.Entity<User>();

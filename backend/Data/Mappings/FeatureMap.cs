@@ -11,11 +11,11 @@ public class FeatureMap : BaseMap<Feature>
         builder.HasKey(f=>f.FeatureTitle);
         builder.Property(f=>f.FeatureTitle).HasMaxLength(100).IsRequired();
         builder.Property(f => f.Description).IsRequired();
-        builder.Property(f => f.SolutionId).IsRequired();
+        builder.Property(f => f.ServiceId).IsRequired();
         
-        builder.HasOne(f => f.Solution)
+        builder.HasOne(f => f.Service)
             .WithMany(s => s.Features)
-            .HasForeignKey(f => f.SolutionId)
+            .HasForeignKey(f => f.ServiceId)
             .IsRequired();
     }
 }

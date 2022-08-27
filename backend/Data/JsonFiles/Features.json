@@ -1,181 +1,181 @@
 [
   {
-    "SolutionId": "10",
+    "ServiceId": "10",
     "FeatureTitle": "Designed by our quants",
     "Description": "Created by our quants, for our quants. Our analytics tools are trusted daily by over a thousand quantitative developers at Goldman Sachs to manage our global trading business."
   },
   {
-    "SolutionId": "10",
+    "ServiceId": "10",
     "FeatureTitle": "Comprehensive and cross-asset",
     "Description": "Our business covers all asset classes. Our financial toolkit is designed from the ground up to be a complete solution for all markets, delivered through an intuitive interface."
   },
   {
-    "SolutionId": "10",
+    "ServiceId": "10",
     "FeatureTitle": "Proven by markets",
     "Description": "Leverage models and datasets which have been tested and refined through decades of experience at the center of global derivatives markets. Use what we use."
   },
   {
-    "SolutionId": "12",
+    "ServiceId": "12",
     "FeatureTitle": "A New Face for the Firm",
     "Description": "Take a tour of the design features of Goldman Sans, a custom typeface designed for the needs of digital finance."
   },
   {
-    "SolutionId": "12",
+    "ServiceId": "12",
     "FeatureTitle": "Creating Our Color System",
     "Description": "Learn about the research and testing that went into creating our color palette to ensure versatility, accessibility, consistency, and scalability."
   },
   {
-    "SolutionId": "12",
+    "ServiceId": "12",
     "FeatureTitle": "A Matter of Principle",
     "Description": "Knowing how and why we design informs what we design."
   },
   {
-    "SolutionId": "9",
+    "ServiceId": "9",
     "FeatureTitle": "Competitive, Fixed Interest Rates",
     "Description": "Keep borrowing costs predictable with a fixed interest rate, ranging from 8.99% to 16.99%"
   },
   {
-    "SolutionId": "9",
+    "ServiceId": "9",
     "FeatureTitle": "Request funds as needed",
     "Description": "Build inventory, fund operations and take advantage of opportunities"
   },
   {
-    "SolutionId": "9",
+    "ServiceId": "9",
     "FeatureTitle": "See options in two steps",
     "Description": "Our 100% digitial experience makes it simple to see options for your business without impacting your personal credit score, after we get some basic information"
   },
   {
-    "SolutionId": "7",
+    "ServiceId": "7",
     "FeatureTitle": "Market Strategy",
     "Description": "Complex markets can be difficult to decipher. We provide investment professionals and their clients with a global perspective to help explain the issues and trends affecting their portfolios"
   },
   {
-    "SolutionId": "7",
+    "ServiceId": "7",
     "FeatureTitle": "Authentic Source of Information",
     "Description": "As one of the world's leading asset managers, we provide original, real time, reliable and fundamental insights and analysis"
   },
   {
-    "SolutionId": "7",
+    "ServiceId": "7",
     "FeatureTitle": "Most of its text is made ",
     "Description": "Most of its text is made up from sections 1.10.32–3 of Cicero's De finibus bonorum et malorum (On the Boundaries of Goods and Evils; finibus may also be translated as purposes). Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit is the first known version (\"Neither is there anyone who loves grief itself since it is grief"
   },
   {
-    "SolutionId": "2",
+    "ServiceId": "2",
     "FeatureTitle": "Data Management",
     "Description": "Remove the complexity of building and supporting a data management system by bringing your own data into Goldman Sachs' managed tick database."
   },
   {
-    "SolutionId": "2",
+    "ServiceId": "2",
     "FeatureTitle": "Curated Data",
     "Description": "Access institutional grade GS curated financial markets data including select third-party data products sourced via AWS Data Exchange - all mapped to a consistent data model"
   },
   {
-    "SolutionId": "2",
+    "ServiceId": "2",
     "FeatureTitle": "Data Analytics",
     "Description": "Accelerate time to market by rapidly turning data into actionable insights with our suite of tools for data visualization and analysis"
   },
   {
-    "SolutionId": "1",
+    "ServiceId": "1",
     "FeatureTitle": "Reliable and Trusted Industry Leaders",
     "Description": "Together with AWS we have collaborated to create new solutions for financial services organizations"
   },
   {
-    "SolutionId": "1",
+    "ServiceId": "1",
     "FeatureTitle": "Simple Steps",
     "Description": "Our Api's and services are easy to understand and we will guide you through from registering an application to authentication of your first API call."
   },
   {
-    "SolutionId": "1",
+    "ServiceId": "1",
     "FeatureTitle": "In a professional context",
     "Description": "In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live. However, reviewers"
   },
   {
-    "SolutionId": "5",
+    "ServiceId": "5",
     "FeatureTitle": "Cutting Edge Technology",
     "Description": "As one of the world's leading asset managers, we have the know how and technology to provide you with the best hedging strategies"
   },
   {
-    "SolutionId": "5",
+    "ServiceId": "5",
     "FeatureTitle": "Cash Managment",
     "Description": "Ability to move cash rapidly and seamlessly with careful and transparent oversight in place"
   },
   {
-    "SolutionId": "5",
+    "ServiceId": "5",
     "FeatureTitle": "Customizable",
     "Description": "Customize and share your view, upload multiple payments/receipts, instructions, or journals, and approve with two clicks"
   },
   {
-    "SolutionId": "4",
+    "ServiceId": "4",
     "FeatureTitle": "Independent Source",
     "Description": "Providing independently caclulated solutions that our clients need to meet specific investment criteria"
   },
   {
-    "SolutionId": "4",
+    "ServiceId": "4",
     "FeatureTitle": "Bespoke Trade Implementations",
     "Description": "With our proprietary index solutions, we can develop bespoke trade implementations for your needs"
   },
   {
-    "SolutionId": "4",
+    "ServiceId": "4",
     "FeatureTitle": "Access to Global Prime Services",
     "Description": "Through usm you will have access to our suite of global prime services"
   },
   {
-    "SolutionId": "3",
+    "ServiceId": "3",
     "FeatureTitle": "Inform your investment strategy",
     "Description": "With our data, risk and analytics suite you will be empowered to make the best investment strategy"
   },
   {
-    "SolutionId": "3",
+    "ServiceId": "3",
     "FeatureTitle": "Comprehensive Support",
     "Description": "We provide our clients with a global perspective to help explain the issues and trends affecting their portfolios"
   },
   {
-    "SolutionId": "3",
+    "ServiceId": "3",
     "FeatureTitle": "Market Models",
     "Description": "Leverage our models to create a bespoke strategy tailored to your needs"
   },
   {
-    "SolutionId": "6",
+    "ServiceId": "6",
     "FeatureTitle": "Stay informed and ahead of the curve",
     "Description": "Leverage our models and stay ahead of the curve with market downturns and risks"
   },
   {
-    "SolutionId": "6",
+    "ServiceId": "6",
     "FeatureTitle": "Weekly updates",
     "Description": "Weekly updates on key developments across macro and micro views"
   },
   {
-    "SolutionId": "6",
+    "ServiceId": "6",
     "FeatureTitle": "Trusted partner",
     "Description": "With over 150 years of experience in this field, our data and analysis is trusted by many"
   },
   {
-    "SolutionId": "8",
+    "ServiceId": "8",
     "FeatureTitle": "Payments",
     "Description": "Send, receive, and manage payments and accounts globally. For businesses who want to create modern, automated, and API-based payment experiences"
   },
   {
-    "SolutionId": "8",
+    "ServiceId": "8",
     "FeatureTitle": "Treasury Automation",
     "Description": "Manage liquidity, move money, and automate key treasury functions. For Treasurers who want to upgrade to real-time"
   },
   {
-    "SolutionId": "8",
+    "ServiceId": "8",
     "FeatureTitle": "Banking as a Service",
     "Description": "Embed business bank account & payments experiences within your own products. For B2B software companies who want to expand their offering"
   },
   {
-    "SolutionId": "14",
+    "ServiceId": "14",
     "FeatureTitle": "Data at a glance",
     "Description": "Remove the complexity of understanding data, with our dashboard easily access and view your data at a glance."
   },
   {
-    "SolutionId": "14",
+    "ServiceId": "14",
     "FeatureTitle": "Personally Curated Data",
     "Description": "Access institutional grade GS curated financial markets data and news"
   },
   {
-    "SolutionId": "14",
+    "ServiceId": "14",
     "FeatureTitle": "All in One",
     "Description": "An all in one platform to view and make informed decisions"
   }

@@ -10,11 +10,11 @@ public class Feature
         
     }
     
-    public Feature(string featureTitle, string description, int solutionId)
+    public Feature(string featureTitle, string description, int serviceId)
     {
         FeatureTitle = featureTitle;
         Description = description;
-        SolutionId = solutionId;
+        ServiceId = serviceId;
     }
     
     [Key]
@@ -22,8 +22,8 @@ public class Feature
     
     public string Description { get; set; }
     
-    [ForeignKey("Solution")]
-    public int SolutionId { get; set; }
+    [ForeignKey("Service")]
+    public int ServiceId { get; set; }
     
-    public virtual Solution? Solution { get; set; }
+    public virtual Service? Service { get; set; }
 }
