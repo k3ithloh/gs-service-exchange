@@ -29,19 +29,19 @@ public class DataSeeder
     
     // Seeder Methods for each model
 
-    public void SeedStocks()
-    {
-        string data = GetData("Stocks");
-        var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
-        foreach (var item in items)
-        {
-            float currentClose = float.Parse(item["CurrentClose"]);
-            DateTime lastUpdated = DateTime.Parse(item["LastUpdated"]);
-            var s = new Stock(item["Ticker"], currentClose, lastUpdated, item["Currency"]);
-            _db.Stocks.Add(s);
-            _db.SaveChanges();
-        }
-    }
+    // public void SeedStocks()
+    // {
+    //     string data = GetData("Stocks");
+    //     var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
+    //     foreach (var item in items)
+    //     {
+    //         float currentClose = float.Parse(item["CurrentClose"]);
+    //         DateTime lastUpdated = DateTime.Parse(item["LastUpdated"]);
+    //         var s = new Stock(item["Ticker"], currentClose, lastUpdated, item["Currency"]);
+    //         _db.Stocks.Add(s);
+    //         _db.SaveChanges();
+    //     }
+    // }
 
     public void SeedSolutions()
     {
