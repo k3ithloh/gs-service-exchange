@@ -18,7 +18,7 @@ public class UserMap : BaseMap<User>
         
         builder.HasMany(x => x.UserPurchases)
             .WithOne(x => x.User)
-            .HasForeignKey(x => new { x.UserId, x.CustomerName })
+            .HasForeignKey(x => x.UserId)
             .IsRequired();
 
 

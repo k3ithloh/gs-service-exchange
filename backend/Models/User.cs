@@ -22,6 +22,6 @@ public class User
     public string CustomerName { get; set; }
     
     public ICollection<UserPurchase>? UserPurchases { get; set; }
-    
+    public ICollection<UserPayment>? UserPayments { get; set; }
     public virtual Customer? Customer { get; set; }
 }

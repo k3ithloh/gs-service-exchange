@@ -40,5 +40,15 @@ public class DataContext : DbContext
         
         var solutionCustomerMap = new SolutionCustomerMap(builder.Entity<SolutionCustomer>());
         builder.Entity<SolutionCustomer>();
+        
+        var usermap = new UserMap(builder.Entity<User>());
+        builder.Entity<User>();
+        
+        var userpurchasemap = new UserPurchaseMap(builder.Entity<UserPurchase>());
+        builder.Entity<UserPurchase>();
+        
+        var userpaymentmap = new UserPaymentMap(builder.Entity<UserPayment>());
+        builder.Entity<UserPayment>();
+        
     }
 }
