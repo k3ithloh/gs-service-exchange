@@ -8,7 +8,7 @@
 // {
 //     [Route("api/[controller]")]
 //     [ApiController]
-//     [Authorize(Roles = "rainbow-unicorn-user")]
+//     [Authorize(Roles = "rainbow-unicorn-customer")]
 //     public class CreditCardController : ControllerBase
 //     {
 //         private readonly DataContext _context;

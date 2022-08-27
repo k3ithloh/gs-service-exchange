@@ -21,5 +21,10 @@ public class SolutionMap : BaseMap<Solution>
             .WithOne(f => f.Solution)
             .HasForeignKey(f => f.SolutionId)
             .IsRequired();
+        
+        builder.HasMany(e => e.SolutionCustomers)
+            .WithOne(e => e.Solution)
+            .HasForeignKey(e => e.SolutionId)
+            .IsRequired();
     }
 }

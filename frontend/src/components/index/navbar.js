@@ -6,8 +6,10 @@ export default function Navbar() {
     <nav className="flex h-20 items-center justify-between px-4 py-4 drop-shadow-md">
       {/* Logo */}
       <div className="flex items-center justify-start">
-        <Link className="text-2xl font-semibold" href="/">
-          GSX
+        <Link className="text-2xl" href="/">
+          <p className='font-pacifico'>
+            GSX
+          </p>
         </Link>
       </div>
 
@@ -17,7 +19,7 @@ export default function Navbar() {
 
       <div className="flex justify-end gap-x-5 ">
 
-        <Link href="/signup">
+        <Link href="/register">
           <button className="w-20 rounded border border-blue-500 bg-transparent py-2 font-semibold text-blue-700 hover:bg-gray-100">
             Sign Up
           </button>

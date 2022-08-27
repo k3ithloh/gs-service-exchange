@@ -11,11 +11,11 @@ public class CreditCardMap : BaseMap<CreditCard>
         builder.Property(e => e.Number).IsRequired();
         builder.Property(e => e.ExpiryDate).IsRequired();
         builder.Property(e => e.Cvv).IsRequired();
-        builder.Property(e => e.Username).IsRequired();
+        builder.Property(e => e.CustomerName).IsRequired();
 
-        builder.HasOne(e => e.User)
+        builder.HasOne(e => e.Customer)
             .WithMany(e => e.CreditCards)
-            .HasForeignKey(e => e.Username)
+            .HasForeignKey(e => e.CustomerName)
             .IsRequired();
     }
     
