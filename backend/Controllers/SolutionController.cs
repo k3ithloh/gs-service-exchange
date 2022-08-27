@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "rainbow-unicorn-user")]
+    [Authorize(Roles = "rainbow-unicorn-customer")]
     public class SolutionController : ControllerBase
     {
         private readonly DataContext _context;
@@ -23,6 +24,7 @@ namespace rainbow_unicorn.Controllers
 
         // Get all Solutions
         [HttpGet]
+        [SwaggerOperation(Summary = "Get all existing solutions by GS")]
         public async Task<ActionResult<List<Solution>>> Get()
         {
             return Ok(await _context.Solutions
@@ -31,8 +33,9 @@ namespace rainbow_unicorn.Controllers
         }
 
 
-        // Get a Solution based on a given SolutionTitle
+        // Get a Solution based on a given SolutionId
         [HttpGet("{solutionId}")]
+        [SwaggerOperation(Summary = "Retrieve solution details base on given ID")]
         public async Task<ActionResult<List<Solution>>> Get(int solutionId)
         {
             var solution = await _context.Solutions
@@ -43,5 +46,13 @@ namespace rainbow_unicorn.Controllers
             return Ok(solution);
         }
         
+        [HttpGet("AllId")]
+        [SwaggerOperation(Summary = "Returns a array of all solutionid")]
+        public async Task<ActionResult<List<Solution>>> GetSolutionId()
+        {
+            return Ok(await _context.Solutions
+                .Select(s => s.SolutionId)
+                .ToListAsync());
+        }
     }
 }

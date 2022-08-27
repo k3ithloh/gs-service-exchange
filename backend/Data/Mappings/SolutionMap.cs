@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using rainbow_unicorn.Utilities;
 
@@ -16,10 +17,16 @@ public class SolutionMap : BaseMap<Solution>
         builder.Property(s => s.ReleaseDate).IsRequired();
         builder.Property(s => s.Rating).IsRequired();
         builder.Property(s => s.Category).IsRequired();
+        builder.Property(s => s.New).IsRequired();
         
         builder.HasMany(s => s.Features)
             .WithOne(f => f.Solution)
             .HasForeignKey(f => f.SolutionId)
+            .IsRequired();
+        
+        builder.HasMany(e => e.SolutionCustomers)
+            .WithOne(e => e.Solution)
+            .HasForeignKey(e => e.SolutionId)
             .IsRequired();
     }
 }

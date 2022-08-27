@@ -1,24 +1,28 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rainbow_unicorn;
 
 public class User
 {
+
     public User()
     {
         
     }
-
-    public User(string username, byte[] passwordHash, byte[] passwordSalt)
+    
+    public User(string userId, string customerName, DateTime createdDate)
     {
-        Username = username;
-        PasswordHash = passwordHash;
-        PasswordSalt = passwordSalt;
+        UserId = userId;
+        CustomerName = customerName;
+        CreatedDate = createdDate;
     }
     
-    [Key]
-    public string Username { get; set; } = string.Empty;
-    public byte[] PasswordHash { get; set; }
-    public byte[] PasswordSalt { get; set; }
-    public ICollection<CreditCard>? CreditCards { get; set; }
+
+    public string UserId { get; set; }
+    public string CustomerName { get; set; }
+    public DateTime CreatedDate { get; set; }
+    
+    public ICollection<UserPurchase>? UserPurchases { get; set; }
+    public virtual Customer? Customer { get; set; }
 }

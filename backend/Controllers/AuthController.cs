@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 {
@@ -13,7 +14,7 @@ namespace rainbow_unicorn.Controllers
 
     public class AuthController : ControllerBase
     {
-        // public static User user = new User();
+        // public static Customer customer = new Customer();
         private readonly IConfiguration _configuration;
         private readonly DataContext _context;
 
@@ -25,41 +26,46 @@ namespace rainbow_unicorn.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDto request)
+        [SwaggerOperation(Summary = "To add account into DB")]
+        public async Task<ActionResult<Customer>> Register(CustomerRegisterDto request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            var user = new User(request.Username, passwordHash, passwordSalt);
-            await _context.Users.AddAsync(user);
+            var customer = new Customer(request.CustomerName, 
+                                passwordHash, 
+                                passwordSalt, 
+                                request.FullName, 
+                                request.Email);
+            await _context.Customers.AddAsync(customer);
             await _context.SaveChangesAsync();
-            
-            return Ok(await _context.Users.ToListAsync());
+            return Ok(await _context.Customers.ToListAsync());
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        [SwaggerOperation(Summary = "To log into an existing account in DB")]
+        public async Task<ActionResult<string>> Login(CustomerLoginDto request)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == request.Username);
-            if (user == null)
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(u => u.CustomerName == request.CustomerName);
+            if (customer == null)
             {
-                return BadRequest("User not found");
+                return BadRequest("Customer not found");
             }
 
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, customer.PasswordHash, customer.PasswordSalt))
             {
                 return BadRequest("Wrong password.");
             }
 
-            string token = CreateToken(user);
+            string token = CreateToken(customer);
             return Ok(token);
         }
 
-        private string CreateToken(User user)
+        private string CreateToken(Customer customer)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, "rainbow-unicorn-user")
+                new Claim(ClaimTypes.Name, customer.CustomerName),
+                new Claim(ClaimTypes.Role, "rainbow-unicorn-customer")
             };
 
             var key = new SymmetricSecurityKey(

@@ -7,14 +7,21 @@ public class UserMap : BaseMap<User>
 {
     public UserMap(EntityTypeBuilder<User> builder) : base(builder)
     {
-        builder.HasKey(e => e.Username);
-        builder.Property(e => e.Username).IsRequired();
-        builder.Property(e => e.PasswordHash).IsRequired();
-        builder.Property(e => e.PasswordSalt).IsRequired();
-
-        builder.HasMany(e => e.CreditCards)
-            .WithOne(e => e.User)
-            .HasForeignKey(e => e.Username)
+        builder.HasKey(x => x.UserId);
+        builder.Property(x=>x.UserId).IsRequired();
+        builder.Property(x=>x.CustomerName).IsRequired();
+        builder.Property(x=>x.CreatedDate).IsRequired();
+        
+        builder.HasOne(x => x.Customer)
+            .WithMany(x => x.Users)
+            .HasForeignKey(x => x.CustomerName)
             .IsRequired();
+        
+        builder.HasMany(x => x.UserPurchases)
+            .WithOne(x => x.User)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired();
+
+
     }
 }
