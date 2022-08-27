@@ -11,7 +11,6 @@ public class UserPaymentMap : BaseMap<UserPayment>
         builder.HasKey(s=> new {s.PurchaseId, s.PaymentNumber});
         builder.Property(s=>s.PurchaseId).IsRequired();
         builder.Property(s => s.PaymentNumber).IsRequired();
-        builder.Property(s=>s.PaymentNumber).IsRequired();
         builder.Property(s=>s.Amount).IsRequired();
         builder.Property(s => s.Fulfilled).IsRequired();
 

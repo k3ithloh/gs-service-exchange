@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rainbow_unicorn;
@@ -9,16 +10,17 @@ public class UserPurchase
         
     }
 
-    public UserPurchase(string purchaseid, DateTime purchasedate, string customername, string userid, float amount, int numberofpayments)
+    public UserPurchase(string purchaseId, DateTime purchaseDate, string customerName, string userId, float amount, int numberOfPayments)
     {
-        PurchaseId = purchaseid;
-        PurchaseDate = purchasedate;
-        CustomerName = customername;
-        UserId = userid;
+        PurchaseId = purchaseId;
+        PurchaseDate = purchaseDate;
+        CustomerName = customerName;
+        UserId = userId;
         Amount = amount;
-        NumberOfPayments = numberofpayments;
+        NumberOfPayments = numberOfPayments;
     }
     
+    [Key]
     public string PurchaseId { get; set; }
     
     public DateTime PurchaseDate { get; set; }

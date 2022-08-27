@@ -24,11 +24,10 @@ public class UserPurchaseMap : BaseMap<UserPurchase>
             .WithMany(s=>s.UserPurchases)
             .HasForeignKey(s=>s.UserId)
             .IsRequired();
-        
+
         builder.HasMany(s => s.UserPayments)
             .WithOne(s => s.UserPurchase)
             .HasForeignKey(s => s.PurchaseId)
             .IsRequired();
-        
     }
 }

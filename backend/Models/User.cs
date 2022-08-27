@@ -11,11 +11,11 @@ public class User
         
     }
     
-    public User(string userid, string customername, DateTime createddate)
+    public User(string userId, string customerName, DateTime createdDate)
     {
-        UserId = userid;
-        CustomerName = customername;
-        CreatedDate = createddate;
+        UserId = userId;
+        CustomerName = customerName;
+        CreatedDate = createdDate;
     }
     
 

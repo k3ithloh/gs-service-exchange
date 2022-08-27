@@ -20,17 +20,9 @@ namespace rainbow_unicorn.Controllers
             _context = context;
         }
 
-
-        // Get all UserPurchase
-        [HttpGet]
-        public async Task<ActionResult<List<UserPurchase>>> Get()
-        {
-            return Ok(await _context.UserPurchases
-                .ToListAsync());
-        }
-
         // Get a UserPurchase given a PurchaseId)
         [HttpGet("{purchaseid}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<List<User>>> Get(string purchaseid)
         {
             var query = await _context.UserPurchases
@@ -43,6 +35,7 @@ namespace rainbow_unicorn.Controllers
 
         // Add a new UserPurchase
         [HttpPost]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<List<UserPurchase>>> AddUser(UserPurchase userpurchase)
         {
             await _context.UserPurchases.AddAsync(userpurchase);
@@ -54,6 +47,7 @@ namespace rainbow_unicorn.Controllers
 
         //Delete a User
         [HttpDelete]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<List<User>>> DeleteUser(string userid, string customername)
         {
             var user = await _context.Users.FindAsync(userid, customername);
