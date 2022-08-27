@@ -18,6 +18,8 @@ public class SolutionCustomer
     public string CustomerName { get; set; } = string.Empty;
     [ForeignKey("Solution")]
     public int SolutionId { get; set; }
+    public DateTime DatePurchased { get; set; }
+    public float AmountPayable { get; set; }
     
     public virtual Customer Customer { get; set; }
  
