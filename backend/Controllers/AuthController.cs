@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 {
@@ -25,6 +26,7 @@ namespace rainbow_unicorn.Controllers
         }
 
         [HttpPost("register")]
+        [SwaggerOperation(Summary = "To add account into DB")]
         public async Task<ActionResult<Customer>> Register(CustomerRegisterDto request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -39,6 +41,7 @@ namespace rainbow_unicorn.Controllers
         }
 
         [HttpPost("login")]
+        [SwaggerOperation(Summary = "To log into an existing account in DB")]
         public async Task<ActionResult<string>> Login(CustomerLoginDto request)
         {
             var customer = await _context.Customers
