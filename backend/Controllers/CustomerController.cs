@@ -76,6 +76,9 @@ namespace rainbow_unicorn.Controllers
                     filtered.Add(record.Stock.Ticker);
                 }
             }
+            if (filtered.Count == 0)
+                return BadRequest("Customer has no stocks in their dashboard.");
+            
             return Ok(filtered);
         }
     }
