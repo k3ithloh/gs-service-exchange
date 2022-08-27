@@ -13,18 +13,22 @@ const LoginForm = () => {
 
   async function login(){
     let login_data = {
-      customerName: customerName,
-      password: password,
+        customerName: customerName,
+        password: password,
     };
-    console.log(login_data)
-    await axios.post("https://api.gsserviceexchange.online/api/auth/login", login_data
-    // data: ,
-    // crossdomain: true
-  )
+  //   await axios.post("https://api.gsserviceexchange.online/api/Auth/login", {
+  //     "customerName": "string",
+  //     "password": "string",
+  //   // data: ,
+  // }, {headers: {
+  //   "Content-Type": "application/json-patch+json",
+  //   crossdomain: true
+  // }})
+  await axios.post('/api/api_request', {"customerName": "string", "password": "string"}, {headers: {endpoint: "auth/login"}})
     .then(res => {
-      console.log(res);
+      console.log(res.json);
       if (res.status == 200) {
-        localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
+        localStorage.setItem("ACCESS_TOKEN", res.data);
         router.push('/')
       }
     })
@@ -52,15 +56,19 @@ const LoginForm = () => {
         <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={({target})=>setPassword(target?.value)} />
         </div>
         <div className="flex items-center justify-between mb-4">
-            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={() => login()}>
+            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={ () => login()}>
                 Sign In
             </button>
-            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                Forgot Password?
+            <Link className="inline-block align-baseline" href="#">
+                <a className='font-bold text-sm text-blue hover:text-dark_blue"'>
+                  Forgot Password?
+                </a>
             </Link>
         </div>
         { isError ? <p className="text-red-500 text-xs italic">Please type in the correct username or password</p> : ''}
-        <Link href="/register" className="text-blue-500 text-xs">Don&#39;t have an account? Register here</Link>
+        <Link href="/register">
+          <a className="text-blue text-xs">Don&#39;t have an account? Register here</a>
+        </Link>
     </form>
     </div>
   )

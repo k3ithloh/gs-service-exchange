@@ -14,7 +14,7 @@ const categories = [
 
 const renderCategories = categories.map((category, index) => {
     return (
-      <button className="w-72 rounded-xl bg-blue p-3 font-semibold text-white hover:bg-dark_blue text-3xl" key={index}>
+      <button className="w-56 rounded-xl bg-blue p-3 font-semibold text-white hover:bg-dark_blue text-2xl" key={index}>
           {category.name}
       </button>
     );

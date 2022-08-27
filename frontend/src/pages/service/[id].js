@@ -100,7 +100,7 @@ export async function getStaticPaths() {
   //     }
   //   }
   // })
-  const serviceIds = ["1","2","3","4","5"];
+  const serviceIds = ["1","2","3","4","5","10"];
   const paths = serviceIds.map(serviceId => {
     return {
       params: {
