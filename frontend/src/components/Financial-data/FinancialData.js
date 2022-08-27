@@ -1,19 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FinancialDataOptionsBar from "./FinancialDataOptionsBar";
 import FinancialWidget from './FinancialWidget'
+import axios from 'axios'
 
-const FinancialData = () => {
+const FinancialData = ({ marketplaceData }) => {
+  const [financialWidget, setFinancialWidget] = useState([marketplaceData]);
 
-  const [financialWidget, setFinancialWidget] = useState([
-    [
-      'AMZN',
-      'TIME_SERIES',
-      'DAILY'
-    ]
-  ]);
+  useEffect(()=>{
+    console.log(financialWidget);
+  }, [])
 
-  function handleCallback(data){
+  let customerName = "string"
+
+  async function handleCallback(data){
     setFinancialWidget(previousWidgets => [...previousWidgets, data]);
+    const request_data = {
+      solutionId: 4,
+      customerName: 'string'
+    }
+    await axios.post('/api/post_request_auth', data, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN"),
+        'endpoint': `${data[0]}/string/`
+      },
+    }).then(res => {
+      return res.data;
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   return (
@@ -22,7 +36,7 @@ const FinancialData = () => {
               <div className="grid xl:grid-cols-2 grid-cols-1 gap-4 mt-8" style={{zIndex: '-1'}}>
                 {
                   financialWidget.map((data, key)=>{
-                    return (<FinancialWidget className="mb-4" key={key} data={data} />)
+                    
                   })
                 }
             </div>

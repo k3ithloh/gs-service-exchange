@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const FinancialSiderbar = () => {
+const FinancialSidebar = () => {
 
    const router = useRouter();
 
@@ -35,4 +35,4 @@ const FinancialSiderbar = () => {
   )
 }
 
-export default FinancialSiderbar
+export default FinancialSidebar

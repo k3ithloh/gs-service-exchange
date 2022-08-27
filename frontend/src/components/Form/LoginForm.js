@@ -17,7 +17,6 @@ const LoginForm = () => {
     };
   await axios.post('/api/post_request', login_data, {headers: {endpoint: "auth/login", "Content-Type": "application/json-patch+json",}})
     .then(res => {
-      console.log(res.data);
       if (res.status == 200) {
         localStorage.setItem("ACCESS_TOKEN", res.data);
         router.push('/')
@@ -56,19 +55,30 @@ const LoginForm = () => {
           />
         </div>
         <div className="flex items-center justify-between mb-4">
-
-            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={ () => login()}>
-                Sign In
-            </button>
-            <Link className="inline-block align-baseline" href="#">
-                <a className='font-bold text-sm text-blue hover:text-dark_blue"'>
-                  Forgot Password?
-                </a>
-            </Link>
+          <button
+            className="bg-grey-500 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            onClick={() => login()}
+            style={{backgroundColor: 'grey !important'}}
+          >
+            Sign In
+          </button>
+          <Link
+            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            href="#"
+          >
+            Forgot Password?
+          </Link>
         </div>
-        { isError ? <p className="text-red-500 text-xs italic">Please type in the correct username or password</p> : ''}
-        <Link href="/register">
-          <a className="text-blue text-xs">Don&#39;t have an account? Register here</a>
+        {isError ? (
+          <p className="text-red-500 text-xs italic" style={{color: 'red'}}>
+            Please type in the correct username or password
+          </p>
+        ) : (
+          ""
+        )}
+        <Link href="/register" className="text-blue-500 text-xs underline">
+          Don&#39;t have an account? Register here
         </Link>
     </form>
     </div>
