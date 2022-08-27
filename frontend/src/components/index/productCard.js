@@ -33,7 +33,7 @@ export default function productCard(product) {
       <div className="space-y-10">
         <div className='space-y-4'>
           <div className="flex gap-x-4 place-content-center justify-start">
-            <h3 className="font-semibold text-2xl">{product.solutionTitle}</h3>
+            <h3 className="font-semibold text-2xl">{product.serviceTitle}</h3>
             <div className="rounded-3xl bg-green text-white py-1 px-4 place-content-center">
               NEW
             </div>
@@ -47,7 +47,7 @@ export default function productCard(product) {
         </p>
       </div>
       <div className='flex justify-end'>
-        <Link href={"/" + product.solutionId}>
+        <Link href={"/service/" + product.serviceId}>
           <button className="w-2/5 rounded-xl bg-blue py-3 font-semibold text-white hover:bg-dark_blue text-lg">
             See More
           </button>

@@ -14,7 +14,7 @@ const categories = [
 
 const renderCategories = categories.map((category, index) => {
     return (
-      <button className="w-72 rounded-xl bg-blue p-3 font-semibold text-white hover:bg-dark_blue text-3xl" key={index}>
+      <button className="w-56 rounded-xl bg-blue p-3 font-semibold text-white hover:bg-dark_blue text-2xl" key={index}>
           {category.name}
       </button>
     );
@@ -22,9 +22,9 @@ const renderCategories = categories.map((category, index) => {
 
 export default function Hero() {
   return (
-    <div className="flex my-16 mx-44 items-end">
+    <div className="flex my-16 mx-44 h-100 items-end">
       <div className="w-3/5 my-8 space-y-14">
-        <h1 className="text-5xl text-dark_blue font-bold">Solutions At a Glance</h1>
+        <h1 className="text-5xl text-dark_blue font-bold">Services At a Glance</h1>
         <p className="w-4/5 font-light text-2xl">
           Incorporate the full range of Goldman Sachs services within your
           own applications and processes to drive efficiency, architect for

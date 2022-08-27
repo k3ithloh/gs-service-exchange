@@ -15,6 +15,7 @@ module.exports = {
       grey_100: "#EDEDED",
       dark_blue: "#436781",
       blue: "#3C769F",
+      pale_blue: "#EBF3FA",
       white: "#FFFFFF",
       green: "#077D55",
       yellow: "#FFB75D",
@@ -24,6 +25,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        '100': '25rem',
         '128': '32rem',
         'almost_half': '48.5%',
       }

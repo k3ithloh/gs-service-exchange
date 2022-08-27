@@ -36,7 +36,7 @@ export default function Navbar() {
         </Link>
         
         <Link href="/about">
-          <a className='text-white font-bold hover:bg-grey_600 rounded-lg py-1 w-24 text-center'>Solutions</a>
+          <a className='text-white font-bold hover:bg-grey_600 rounded-lg py-1 w-24 text-center'>Services</a>
         </Link>
 
         <div className="hover:bg-grey_600 rounded-lg py-1 w-24 flex justify-center">

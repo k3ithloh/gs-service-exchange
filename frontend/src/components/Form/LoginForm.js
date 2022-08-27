@@ -6,37 +6,27 @@ import Link from "next/link";
 const LoginForm = () => {
   const router = useRouter();
 
-  const [username, setUsername] = useState();
+  const [customerName, setCustomerName] = useState();
   const [password, setPassword] = useState();
   const [isError, setIsError] = useState(false);
 
   async function login() {
     let login_data = {
-      username: username,
-      password: password,
+        customerName: customerName,
+        password: password,
     };
-    const url = process.env.SERVER;
-    console.log(url);
-    await axios
-      .post(url + '/api/Auth/login', login_data, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-
-        },
-      })
-      .then((res) => {
-        if (res.status == 200) {
-          console.log(res.data)
-          // localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
-          // router.push("/client");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  await axios.post('/api/post_request', login_data, {headers: {endpoint: "auth/login", "Content-Type": "application/json-patch+json",}})
+    .then(res => {
+      console.log(res.data);
+      if (res.status == 200) {
+        localStorage.setItem("ACCESS_TOKEN", res.data);
+        router.push('/')
+      }
+    })
+    .catch(err => {
+        console.log(err)
         setIsError(true);
-      });
+    });
   }
 
   return (
@@ -45,19 +35,10 @@ const LoginForm = () => {
       <br />
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="customerName">
             Username
-          </label>
-          <input
-            className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Username"
-            onChange={({ target }) => setUsername(target?.value)}
-          />
+        </label>
+        <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" onChange={( {target} ) => setCustomerName(target?.value) } />
         </div>
         <div className="mb-6">
           <label
@@ -75,31 +56,21 @@ const LoginForm = () => {
           />
         </div>
         <div className="flex items-center justify-between mb-4">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={() => login()}
-          >
-            Sign In
-          </button>
-          <Link
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Forgot Password?
-          </Link>
+
+            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={ () => login()}>
+                Sign In
+            </button>
+            <Link className="inline-block align-baseline" href="#">
+                <a className='font-bold text-sm text-blue hover:text-dark_blue"'>
+                  Forgot Password?
+                </a>
+            </Link>
         </div>
-        {isError ? (
-          <p className="text-red-500 text-xs italic">
-            Please type in the correct username or password
-          </p>
-        ) : (
-          ""
-        )}
-        <Link href="/register" className="text-blue-500 text-xs underline">
-          Don&#39;t have an account? Register here
+        { isError ? <p className="text-red-500 text-xs italic">Please type in the correct username or password</p> : ''}
+        <Link href="/register">
+          <a className="text-blue text-xs">Don&#39;t have an account? Register here</a>
         </Link>
-      </form>
+    </form>
     </div>
   );
 };
