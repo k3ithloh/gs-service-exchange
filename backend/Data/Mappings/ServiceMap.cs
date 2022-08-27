@@ -5,13 +5,13 @@ using rainbow_unicorn.Utilities;
 
 namespace rainbow_unicorn.Data.Mappings;
 
-public class SolutionMap : BaseMap<Solution>
+public class ServiceMap : BaseMap<Service>
 {
-    public SolutionMap(EntityTypeBuilder<Solution> builder) : base(builder)
+    public ServiceMap(EntityTypeBuilder<Service> builder) : base(builder)
     {
-        builder.HasKey(s=>s.SolutionId);
-        builder.Property(s=>s.SolutionId).IsRequired();
-        builder.Property(s=>s.SolutionTitle).HasMaxLength(100).IsRequired();
+        builder.HasKey(s=>s.ServiceId);
+        builder.Property(s=>s.ServiceId).IsRequired();
+        builder.Property(s=>s.ServiceTitle).HasMaxLength(100).IsRequired();
         builder.Property(s => s.Organisation).HasMaxLength(150).IsRequired();
         builder.Property(s => s.Description).IsRequired();
         builder.Property(s => s.ReleaseDate).IsRequired();
@@ -20,13 +20,13 @@ public class SolutionMap : BaseMap<Solution>
         builder.Property(s => s.New).IsRequired();
         
         builder.HasMany(s => s.Features)
-            .WithOne(f => f.Solution)
-            .HasForeignKey(f => f.SolutionId)
+            .WithOne(f => f.Service)
+            .HasForeignKey(f => f.ServiceId)
             .IsRequired();
         
-        builder.HasMany(e => e.SolutionCustomers)
-            .WithOne(e => e.Solution)
-            .HasForeignKey(e => e.SolutionId)
+        builder.HasMany(e => e.ServiceCustomers)
+            .WithOne(e => e.Service)
+            .HasForeignKey(e => e.ServiceId)
             .IsRequired();
     }
 }

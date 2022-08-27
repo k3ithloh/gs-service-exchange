@@ -31,25 +31,25 @@ namespace rainbow_unicorn.Controllers
 
         {
             var customer = await _context.Customers
-                .Include(c=>c.SolutionCustomers)
+                .Include(c=>c.ServiceCustomers)
                 .FirstOrDefaultAsync(u => u.CustomerName == customerName);
             if (customer == null)
                 return BadRequest("Customer not found.");
             return Ok(customer);
         }
         
-        [HttpGet("getCustomerSolutions/{customerName}")]
-        [SwaggerOperation(Summary = "Get all the solutions that a Customer subscribed to.")]
-        // Get all subscriptions to solutions
-        public async Task<ActionResult<List<Customer>>> GetCustomerSolutions(string customerName)
+        [HttpGet("getCustomerServices/{customerName}")]
+        [SwaggerOperation(Summary = "Get all the services that a Customer subscribed to.")]
+        // Get all subscriptions to services
+        public async Task<ActionResult<List<Customer>>> GetCustomerServices(string customerName)
         {
             var customer = await _context.Customers
-                .Include(c=>c.SolutionCustomers)
+                .Include(c=>c.ServiceCustomers)
                 .FirstOrDefaultAsync(u => u.CustomerName == customerName);
-            var solutions = customer.SolutionCustomers;
-            if (solutions == null)
-                return BadRequest("Customer is not subscribed to any solutions.");
-            return Ok(solutions);
+            var services = customer.ServiceCustomers;
+            if (services == null)
+                return BadRequest("Customer is not subscribed to any services.");
+            return Ok(services);
         }
         
         [HttpGet("getNumberOfUsers/{customerName}")]

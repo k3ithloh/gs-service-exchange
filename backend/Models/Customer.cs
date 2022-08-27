@@ -24,7 +24,7 @@ public class Customer
     public string FullName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
 
-    public ICollection<SolutionCustomer>? SolutionCustomers { get; set; }
+    public ICollection<ServiceCustomer>? ServiceCustomers { get; set; }
 
     public ICollection<CreditCard>? CreditCards { get; set; }
     

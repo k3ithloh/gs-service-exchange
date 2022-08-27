@@ -41,25 +41,25 @@ public class DataSeeder
         }
     }
 
-    public void SeedSolutions()
+    public void SeedServices()
     {
-        string data = GetData("Solutions");
+        string data = GetData("Services");
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
-            int solutionId = int.Parse(item["SolutionId"]);
+            int serviceId = int.Parse(item["ServiceId"]);
             int rating = int.Parse(item["Rating"]);
             DateTime releaseDate = DateTime.Parse(item["ReleaseDate"]);
-            bool newsolution = bool.Parse(item["New"]);
-            var s = new Solution(solutionId,
-                                item["SolutionTitle"], 
+            bool newservice = bool.Parse(item["New"]);
+            var s = new Service(serviceId,
+                                item["ServiceTitle"], 
                                 item["Organisation"], 
                                 item["Description"], 
                                 releaseDate, 
                                 rating, 
                                 item["Category"],
-                                newsolution);
-            _db.Solutions.Add(s);
+                                newservice);
+            _db.Services.Add(s);
             _db.SaveChanges();
         }
     }
@@ -70,10 +70,10 @@ public class DataSeeder
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
-            int solutionId = int.Parse(item["SolutionId"]);
+            int serviceId = int.Parse(item["ServiceId"]);
             var f = new Feature(item["FeatureTitle"], 
                                 item["Description"],
-                                solutionId);
+                                serviceId);
             _db.Features.Add(f);
             _db.SaveChanges();
         }

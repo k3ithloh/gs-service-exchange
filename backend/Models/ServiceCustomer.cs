@@ -2,28 +2,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace rainbow_unicorn;
 
-public class SolutionCustomer
+public class ServiceCustomer
 {
-    public SolutionCustomer()
+    public ServiceCustomer()
     {
         
     }
 
-    public SolutionCustomer(string customerName, int solutionId, DateTime datePurchased, float amountPayable)
+    public ServiceCustomer(string customerName, int serviceId, DateTime datePurchased, float amountPayable)
     {
         CustomerName = customerName;
-        SolutionId = solutionId;
+        ServiceId = serviceId;
         DatePurchased = datePurchased;
         AmountPayable = amountPayable;
     }
     [ForeignKey("Customer")]
     public string CustomerName { get; set; } = string.Empty;
-    [ForeignKey("Solution")]
-    public int SolutionId { get; set; }
+    [ForeignKey("Service")]
+    public int ServiceId { get; set; }
     public DateTime DatePurchased { get; set; }
     public float AmountPayable { get; set; }
     
     public virtual Customer Customer { get; set; }
  
-    public virtual Solution Solution { get; set; }
+    public virtual Service Service { get; set; }
 }

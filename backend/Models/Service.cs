@@ -2,27 +2,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace rainbow_unicorn;
 
-public class Solution
+public class Service
 {
-    public Solution()
+    public Service()
     {
     }
     
-    public Solution(int solutionId, string solutiontitle, string organisation, string description, DateTime releasedate, int rating, string category, bool newsolution)
+    public Service(int serviceId, string servicetitle, string organisation, string description, DateTime releasedate, int rating, string category, bool newservice)
     {
-        SolutionId = solutionId;
-        SolutionTitle = solutiontitle;
+        ServiceId = serviceId;
+        ServiceTitle = servicetitle;
         Organisation = organisation;
         Description = description;
         ReleaseDate = releasedate;
         Rating = rating;
         Category = category;
-        New = newsolution;
+        New = newservice;
     }
 
     [Key]
-    public int SolutionId { get; set; }
-    public string SolutionTitle { get; set; }
+    public int ServiceId { get; set; }
+    public string ServiceTitle { get; set; }
     
     public string Organisation { get; set; }
     
@@ -37,7 +37,7 @@ public class Solution
     public bool New { get; set; }
     
     public ICollection<Feature>? Features { get; set; }
-    public ICollection<SolutionCustomer>? SolutionCustomers { get; set; }
+    public ICollection<ServiceCustomer>? ServiceCustomers { get; set; }
 
 
 }

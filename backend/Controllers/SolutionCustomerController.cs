@@ -10,12 +10,12 @@ namespace rainbow_unicorn.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "rainbow-unicorn-customer")]
-    public class SolutionCustomerController : ControllerBase
+    public class ServiceCustomerController : ControllerBase
     {
         private readonly DataContext _context;
 
         // constructor
-        public SolutionCustomerController(DataContext context)
+        public ServiceCustomerController(DataContext context)
         {
             _context = context;
         }
@@ -24,14 +24,14 @@ namespace rainbow_unicorn.Controllers
         // Add a new subscription
         [HttpPost]
         [SwaggerOperation("Adds a new subscription for a customer.")]
-        public async Task<ActionResult<List<SolutionCustomer>>> AddSubscription(int solutionId, string customerName)
+        public async Task<ActionResult<List<ServiceCustomer>>> AddSubscription(int serviceId, string customerName)
         {
             DateTime datePurchased = DateTime.Now;
-            var solutionCustomer = new SolutionCustomer(customerName, solutionId, datePurchased, 0);
-            await _context.SolutionCustomers.AddAsync(solutionCustomer);
+            var serviceCustomer = new ServiceCustomer(customerName, serviceId, datePurchased, 0);
+            await _context.ServiceCustomers.AddAsync(serviceCustomer);
             await _context.SaveChangesAsync();
             
-            return Ok(await _context.SolutionCustomers.ToListAsync());
+            return Ok(await _context.ServiceCustomers.ToListAsync());
         }
     }
 }
