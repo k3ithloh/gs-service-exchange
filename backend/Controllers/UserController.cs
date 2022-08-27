@@ -46,7 +46,6 @@ namespace rainbow_unicorn.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
         
-
         //Delete a User
         [HttpDelete]
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -60,5 +59,17 @@ namespace rainbow_unicorn.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
+        [HttpGet("purchase/{userid}")]
+        [SwaggerOperation(Summary = "Get an array of purchases by user")]
+        public async Task<ActionResult<List<User>>> GetUserPurchases(string userid)
+        {
+            var user = await _context.Users
+                .Include(u=>u.UserPurchases)
+                .FirstOrDefaultAsync(u=>u.UserId == userid);
+            if (user == null)
+                return BadRequest("User has no purchases");
+            return Ok(user);
+        }
+        
     }
 }

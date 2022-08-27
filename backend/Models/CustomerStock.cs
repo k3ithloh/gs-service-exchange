@@ -23,6 +23,5 @@ public class CustomerStock
     public string Interval { get; set; }
     
     public virtual Customer? Customer { get; set; }
- 
     public virtual Stock? Stock { get; set; }
 }

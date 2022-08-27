@@ -2,6 +2,8 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using rainbow_unicorn.Data;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -50,6 +52,13 @@ namespace rainbow_unicorn.Controllers
             return Ok(solutions);
         }
         
+        [HttpGet("getNumberOfUsers/{customerName}")]
+        [SwaggerOperation(Summary = "Get the number of users that a Customer has")]
+        public async Task <ActionResult<int>> GetNumberOfUsers(string customerName)
+        {
+            return Ok(await _context.Users.CountAsync(u => u.CustomerName == customerName));
+        }
+
         [HttpGet("getStocks/{customerName}")]
         [SwaggerOperation(Summary = "Get all the stocks that a Customer added to their dashboard.")]
         public async Task<ActionResult<List<Customer>>> GetStocks(string customerName)
@@ -69,6 +78,5 @@ namespace rainbow_unicorn.Controllers
             }
             return Ok(filtered);
         }
-        
     }
 }
