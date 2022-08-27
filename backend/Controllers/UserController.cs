@@ -9,7 +9,7 @@ namespace rainbow_unicorn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "rainbow-unicorn-user")]
+    [Authorize(Roles = "rainbow-unicorn-customer")]
     public class UserController : ControllerBase
     {
         private readonly DataContext _context;
@@ -23,15 +23,15 @@ namespace rainbow_unicorn.Controllers
 
         // Get all Users
         [HttpGet]
-        public async Task<ActionResult<List<User>>> Get()
+        public async Task<ActionResult<List<User>>> GetAll()
         {
-            return Ok(await _context.Stocks
+            return Ok(await _context.Users
                 .ToListAsync());
         }
 
         // Get all Users given a CustomerName (customername)
         [HttpGet("{customername}")]
-        public async Task<ActionResult<List<User>>> Get(string customername)
+        public async Task<ActionResult<List<User>>> GetCustomerUser(string customername)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(u=>u.CustomerName == customername);
@@ -40,12 +40,12 @@ namespace rainbow_unicorn.Controllers
             return Ok(user);
         }
 
-        // Get a User based on a given userid and customername {userid}/{customername}
-        [HttpGet("{userid}/{customername}")]
-        public async Task<ActionResult<List<User>>> Get(string userid, string customername)
+        // Get a User based on a given userid {userid}
+        [HttpGet("{userid}")]
+        public async Task<ActionResult<List<User>>> Get(string userid)
         {
             var user = await _context.Users
-                .FindAsync(userid,customername);
+                .FirstOrDefaultAsync(u=>u.UserId == userid);
             if (user == null)
                 return BadRequest("No Users found.");
             return Ok(user);
@@ -65,9 +65,9 @@ namespace rainbow_unicorn.Controllers
 
         //Delete a User
         [HttpDelete]
-        public async Task<ActionResult<List<User>>> DeleteUser(string userid, string customername)
+        public async Task<ActionResult<List<User>>> DeleteUser(string userid)
         {
-            var user = await _context.Users.FindAsync(userid, customername);
+            var user = await _context.Users.FindAsync(userid);
             if (user == null)
                 return BadRequest("No Users found.");
             _context.Users.Remove(user);

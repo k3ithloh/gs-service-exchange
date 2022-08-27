@@ -22,10 +22,7 @@ public class UserPayment
     public float Amount { get; set; }
     public bool Fulfilled { get; set; }
     
-    [ForeignKey("User")]
-    public string UserId { get; set; }
     
     public virtual UserPurchase? UserPurchase { get; set; }
     
-    public virtual User? User { get; set; }
 }

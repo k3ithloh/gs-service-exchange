@@ -11,7 +11,6 @@ public class UserPaymentMap : BaseMap<UserPayment>
         builder.HasKey(s=> new {s.PurchaseId, s.PaymentNumber});
         builder.Property(s=>s.PurchaseId).IsRequired();
         builder.Property(s => s.PaymentNumber).IsRequired();
-        builder.Property(s => s.UserId).IsRequired();
         builder.Property(s=>s.PaymentNumber).IsRequired();
         builder.Property(s=>s.Amount).IsRequired();
         builder.Property(s => s.Fulfilled).IsRequired();
@@ -20,10 +19,6 @@ public class UserPaymentMap : BaseMap<UserPayment>
             .WithMany(s => s.UserPayments)
             .HasForeignKey(s => s.PurchaseId)
             .IsRequired();
-        
-        builder.HasOne(s=>s.User)
-            .WithMany(s=>s.UserPayments)
-            .HasForeignKey(s=>s.UserId)
-            .IsRequired();
+
     }
 }
