@@ -23,4 +23,21 @@
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="deploy\web.config" />
+      <_ContentIncludedByDefault Remove="deploy\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="deploy\appsettings.json" />
+      <_ContentIncludedByDefault Remove="deploy\appsettings.Production.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\CreditCards.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Feature.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Features.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Solution.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Solutions.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Stocks.json" />
+      <_ContentIncludedByDefault Remove="deploy\Data\JsonFiles\Users.json" />
+      <_ContentIncludedByDefault Remove="deploy\rainbow-unicorn.deps.json" />
+      <_ContentIncludedByDefault Remove="deploy\rainbow-unicorn.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="deploy\wwwroot\swagger.json" />
+    </ItemGroup>
+
 </Project>
