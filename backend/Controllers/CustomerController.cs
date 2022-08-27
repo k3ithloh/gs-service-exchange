@@ -37,7 +37,7 @@ namespace rainbow_unicorn.Controllers
         }
         
         [HttpGet("getCustomerSolutions/{customerName}")]
-        [Description("Get all the solutions that a Customer subscribed to.")]
+        [SwaggerOperation("Get all the solutions that a Customer subscribed to.")]
         // Get all subscriptions to solutions
         public async Task<ActionResult<List<Customer>>> GetCustomerSolutions(string customerName)
         {
