@@ -78,5 +78,4 @@ public class DataSeeder
             _db.SaveChanges();
         }
     }
-    
 }
