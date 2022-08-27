@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  useSystemColorMode: false,
+  initialColorMode: "light",
   env: {
     SERVER: process.env.SERVER,
   }
