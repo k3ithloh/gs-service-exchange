@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 
@@ -23,6 +24,7 @@ namespace rainbow_unicorn.Controllers
 
         // Get all Stocks
         [HttpGet]
+        [SwaggerOperation("Gets all stocks that is stored in our DB.")]
         public async Task<ActionResult<List<Stock>>> Get()
         {
             return Ok(await _context.Stocks
@@ -32,6 +34,7 @@ namespace rainbow_unicorn.Controllers
 
         // Get a Stock based on a given Stock Ticker (ticker)
         [HttpGet("{ticker}")]
+        [SwaggerOperation("Retrieve a stock base on it's ticker.")]
         public async Task<ActionResult<List<Stock>>> Get(string ticker)
         {
             var stock = await _context.Stocks
