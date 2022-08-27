@@ -19,6 +19,7 @@ module.exports = {
       white: "#FFFFFF",
       green: "#077D55",
       yellow: "#FFB75D",
+      black: "#000000",
     },
     fontFamily: {
       'sans': ['GoldmanSans', ...defaultTheme.fontFamily.sans],

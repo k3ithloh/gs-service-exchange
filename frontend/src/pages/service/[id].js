@@ -79,18 +79,18 @@ export default function service({ serviceData }) {
 
 export async function getStaticPaths() {
   // Return a list of possible value for id
-  // const serviceIds = await axios.get('https://api.gsserviceexchange.online/api/service', {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
-  //   }
-  // }).then(res => {
-  //     return res.data;
-  //   }).catch(err => {
-  //     console.log(err);
-  //   }
-  // );
+  const serviceIds = await axios.get('https://api.gsserviceexchange.online/api/Solution/AllId', {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
+    }
+  }).then(res => {
+      return res.data;
+    }).catch(err => {
+      console.log(err);
+    }
+  );
 
   // return serviceIds.map((serviceId) => {
   //   return {
@@ -99,11 +99,11 @@ export async function getStaticPaths() {
   //     }
   //   }
   // })
-  const serviceIds = ["1","2","3","4","5","10"];
+  // const serviceIds = ["1","2","3","4","5","10"];
   const paths = serviceIds.map(serviceId => {
     return {
       params: {
-        id: serviceId
+        id: String(serviceId)
       }
     }
   })
