@@ -1,13 +1,9 @@
-import Navbar from "../../components/index/navbar";
-import FinancialData from "../../components/Financial-data/FinancialData";
+import React from 'react'
 
 const index = () => {
   return (
-    <div>
-      <Navbar />
-      <FinancialData />
-    </div>
-  );
-};
+    <div>index</div>
+  )
+}
 
-export default index;
+export default index
