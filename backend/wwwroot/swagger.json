@@ -410,6 +410,66 @@
           }
         ]
       }
+    },
+    "/api/User/{customerName}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get users under a customer",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -475,6 +535,20 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreditCard"
+            },
+            "nullable": true
+          },
+          "userPurchases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPurchase"
+            },
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
             },
             "nullable": true
           }
@@ -610,6 +684,101 @@
           },
           "solution": {
             "$ref": "#/components/schemas/Solution"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userPurchases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPurchase"
+            },
+            "nullable": true
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPayment": {
+        "type": "object",
+        "properties": {
+          "purchaseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "fulfilled": {
+            "type": "boolean"
+          },
+          "userPurchase": {
+            "$ref": "#/components/schemas/UserPurchase"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPurchase": {
+        "type": "object",
+        "properties": {
+          "purchaseId": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchaseDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "numberOfPayments": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "userPayments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPayment"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
