@@ -22,7 +22,7 @@ public class CustomerStock
     public string CustomerName { get; set; }
     public string Interval { get; set; }
     
-    public virtual Customer Customer { get; set; }
+    public virtual Customer? Customer { get; set; }
  
-    public virtual Stock Stock { get; set; }
+    public virtual Stock? Stock { get; set; }
 }

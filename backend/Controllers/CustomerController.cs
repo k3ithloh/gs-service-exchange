@@ -58,13 +58,13 @@ namespace rainbow_unicorn.Controllers
                 .Include(c => c.Stock)
                 .ToListAsync();
             
-            var filtered = new List<Stock>();
+            var filtered = new List<string>();
             
             foreach(var record in allRecords)
             {
                 if (record.CustomerName == customerName)
                 {
-                    filtered.Add(record.Stock);
+                    filtered.Add(record.Stock.Ticker);
                 }
             }
             return Ok(filtered);
