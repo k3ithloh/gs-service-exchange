@@ -17,7 +17,7 @@ export default function Navbar() {
 
       <div className="flex justify-end gap-x-5 ">
 
-        <Link href="/signup">
+        <Link href="/register">
           <button className="w-20 rounded border border-blue-500 bg-transparent py-2 font-semibold text-blue-700 hover:bg-gray-100">
             Sign Up
           </button>
