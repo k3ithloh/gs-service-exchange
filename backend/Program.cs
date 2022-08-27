@@ -28,6 +28,8 @@ builder.Services.AddSwaggerGen(options =>
     });
     
     options.OperationFilter<SecurityRequirementsOperationFilter>();
+    
+    options.EnableAnnotations();
 });
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
