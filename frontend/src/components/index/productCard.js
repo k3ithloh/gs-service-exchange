@@ -47,7 +47,7 @@ export default function productCard(product) {
         </p>
       </div>
       <div className='flex justify-end'>
-        <Link href={"/" + product.solutionId}>
+        <Link href={"/solution/" + product.solutionId}>
           <button className="w-2/5 rounded-xl bg-blue py-3 font-semibold text-white hover:bg-dark_blue text-lg">
             See More
           </button>
