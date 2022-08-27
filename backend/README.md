@@ -40,3 +40,11 @@ Environments > rainbow-unicorn-api-prod-env > Upload and deploy > Choose File > 
 Version label will be automatically generated, no need to change. Then click ```Deploy```.
 
 Deployment takes around 1-3 mins. After deployment is completed, ensure that Health Status is ```Ok```. You may click the ```Go to Environment``` on the left navbar to access the landing page of our api.
+
+If eb-cli is set up in your dir: 
+``` sh
+dotnet publish -c Release -o deploy
+cd deploy
+zip -r ../deploy_bundle.zip *
+eb deploy --staged  # deploy with one line! :)
+```
