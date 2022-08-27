@@ -4,16 +4,15 @@ import axios from 'axios';
 
 async function subscribe(){
   console.log(localStorage.getItem("ACCESS_TOKEN"));
-  const req = await axios.post('https://api.gsserviceexchange.online/api/SolutionCustomer', {
+  const data = {
+    solutionId: 4,
+    customerName: 'string'
+  }
+  await axios.post('/api/post_request_auth', data, {
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+      'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN"),
+      'endpoint': 'SolutionCustomer'
     },
-    data: {
-      solutionId: 10,
-      customerName: 'string'
-    }
   }).then(res => {
     return res.data;
   }).catch(err => {

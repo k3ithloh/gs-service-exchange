@@ -15,15 +15,7 @@ const LoginForm = () => {
         customerName: customerName,
         password: password,
     };
-  //   await axios.post("https://api.gsserviceexchange.online/api/Auth/login", {
-  //     "customerName": "string",
-  //     "password": "string",
-  //   // data: ,
-  // }, {headers: {
-  //   "Content-Type": "application/json-patch+json",
-  //   crossdomain: true
-  // }})
-  await axios.post('/api/api_request', {"customerName": "string", "password": "string"}, {headers: {endpoint: "auth/login"}})
+  await axios.post('/api/post_request', login_data, {headers: {endpoint: "auth/login", "Content-Type": "application/json-patch+json",}})
     .then(res => {
       console.log(res.data);
       if (res.status == 200) {
