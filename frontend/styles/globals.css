@@ -1,6 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @font-face {
+  font-family: 'GoldmanSans';
+  src: local(''), url('../asset/GoldmanSans/GoldmanSans_Rg.ttf') format('ttf');
+} */
+
+@layer base {
+  @font-face {
+    font-family: 'GoldmanSans';
+    src: url('/fonts/GoldmanSans/GoldmanSans_W_Bd.woff2') format('woff2');
+    font-style: italic;
+    font-display: swap;
+    font-weight: 400;
+  }
+}
 
 html,
 body {
