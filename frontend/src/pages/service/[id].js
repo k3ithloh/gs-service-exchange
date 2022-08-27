@@ -2,6 +2,32 @@ import Navbar from "../../components/index/navbar";
 import Footer from "../../components/index/footer";
 import axios from 'axios';
 
+async function subscribe(){
+  console.log(localStorage.getItem("ACCESS_TOKEN"));
+  const req = await axios.post('https://api.gsserviceexchange.online/api/SolutionCustomer', {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+    },
+    data: {
+      solutionId: 10,
+      customerName: 'string'
+    }
+  }).then(res => {
+    return res.data;
+  }).catch(err => {
+    console.log(err);
+  });
+
+  console.log(req);
+}
+
+const handleClick = (event) => {
+  event.preventDefault();
+  subscribe();
+};
+
 const hero = (serviceData) => {
   return (
     <div className="flex bg-grey_100 px-44 py-40">
@@ -20,7 +46,7 @@ const hero = (serviceData) => {
               <a>Watch Demo</a>
             </div>
           </button>
-          <button className="w-72 rounded-xl bg-green p-3 font-semibold text-white hover:opacity-80 text-3xl">
+          <button onClick={handleClick} className="w-72 rounded-xl bg-green p-3 font-semibold text-white hover:opacity-80 text-3xl">
             Get It Now
           </button>
         </div>

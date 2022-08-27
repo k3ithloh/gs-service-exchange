@@ -7,7 +7,7 @@ const LoginForm = () => {
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
-  const [username, setUsername] = useState();
+  const [customerName, setCustomerName] = useState();
   const [password, setPassword] = useState()
   const [dob, setDob] = useState();
   const [address, setAddress] = useState();
@@ -19,20 +19,18 @@ const LoginForm = () => {
 
   async function Register(props){
 
-    const router = useRouter()
+    const router = useRouter();
 
     let data = {
-      username: username,
+      customerName: customerName,
       password: password,
       email: email,
-      name: name,
-      dob: dob.toString(),
-      address: address,
-    }
+      fullName: fullName,
+    };
 
-    await axios.post(process.env.NEXT_PUBLIC_API_URL + "/client", data, {headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json'
+    await axios.post("https://api.gsserviceexchange.online/api/auth/register", data, {headers: {
+      'Content-Type': 'application/json-patch+json',
+      'Accept': 'text/plain'
     }})
     .then(res => {
       console.log(res);
@@ -44,14 +42,13 @@ const LoginForm = () => {
 
 
     let login_data = {
-      username: username,
+      customerName: customerName,
       password: password,
-      user_type: "client"
     }
 
-    await axios.post(process.env.NEXT_PUBLIC_API_URL + "/login/access-token", login_data, {headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json'
+    await axios.post("https://api.gsserviceexchange.online/api/auth/login", login_data, {headers: {
+      'Content-Type': 'application/json-patch+json',
+      'Accept': 'text/plain'
     }})
     .then(res => {
       console.log(res);
@@ -115,7 +112,7 @@ const LoginForm = () => {
       <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Address" onChange={({target})=>setAddress(target?.value)}/>
         </div>
         <div className="flex items-center justify-between mb-2">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={()=>Register()}>
+            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={()=>Register()}>
                 Register
             </button>
         </div>

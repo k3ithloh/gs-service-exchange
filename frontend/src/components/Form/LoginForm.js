@@ -7,31 +7,30 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const [username, setUsername] = useState();
+  const [customerName, setCustomerName] = useState();
   const [password, setPassword] = useState();
   const [isError, setIsError] = useState(false);
 
   async function login(){
     let login_data = {
-        username: username,
-        password: password,
-        user_type: "client"
+      customerName: customerName,
+      password: password,
+    };
+    console.log(login_data)
+    await axios.post("https://api.gsserviceexchange.online/api/auth/login", login_data
+    // data: ,
+    // crossdomain: true
+  )
+    .then(res => {
+      console.log(res);
+      if (res.status == 200) {
+        localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
+        router.push('/')
       }
-      await axios.post("http://34.168.32.14:8081/api/v1/login/access-token", login_data, {headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
-      }})
-      .then(res => {
-        console.log(res);
-        if (res.status == 200) {
-          localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
-          router.push('/client')
-        }
-      })
-      .catch(err => {
-          console.log(err)
-          setIsError(true);
-
+    })
+    .catch(err => {
+        console.log(err)
+        setIsError(true);
     });
   }
 
@@ -41,10 +40,10 @@ const LoginForm = () => {
       <br />
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="customerName">
             Username
         </label>
-        <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" onChange={( {target} ) => setUsername(target?.value) } />
+        <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" onChange={( {target} ) => setCustomerName(target?.value) } />
         </div>
         <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -53,7 +52,7 @@ const LoginForm = () => {
         <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={({target})=>setPassword(target?.value)} />
         </div>
         <div className="flex items-center justify-between mb-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={ () => login()}>
+            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={() => login()}>
                 Sign In
             </button>
             <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
