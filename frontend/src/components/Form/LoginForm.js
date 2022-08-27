@@ -25,7 +25,7 @@ const LoginForm = () => {
   // }})
   await axios.post('/api/api_request', {"customerName": "string", "password": "string"}, {headers: {endpoint: "auth/login"}})
     .then(res => {
-      console.log(res.json);
+      console.log(res.data);
       if (res.status == 200) {
         localStorage.setItem("ACCESS_TOKEN", res.data);
         router.push('/')
