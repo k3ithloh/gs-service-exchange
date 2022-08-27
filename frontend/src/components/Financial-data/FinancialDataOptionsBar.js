@@ -48,8 +48,7 @@ const FinancialDataOptionsBar = (props) => {
   }
 
   return (
-    <div className='w-full flex justify-between' style={{zIndex: '1'}}>
-      <Script src="./script.js" />
+    <div className='w-full flex justify-between mt-5' style={{zIndex: '1'}}>
       <div>
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Securities Type
@@ -92,7 +91,7 @@ const FinancialDataOptionsBar = (props) => {
       </div>
       
       <div className="my-auto mt-5">
-        <button onClick={()=>search()} className="w-full rounded bg-blue-500 p-2 font-bold border shadow-xl text-black hover:bg-blue-700">
+        <button onClick={()=>search()} className="w-full rounded border border-black p-2 shadow-xl font-bold text-black hover:bg-blue-700">
           Add Widget
         </button>
       </div>
