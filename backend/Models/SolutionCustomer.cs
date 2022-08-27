@@ -9,10 +9,12 @@ public class SolutionCustomer
         
     }
 
-    public SolutionCustomer(string customerName, int solutionId)
+    public SolutionCustomer(string customerName, int solutionId, DateTime datePurchased, float amountPayable)
     {
         CustomerName = customerName;
         SolutionId = solutionId;
+        DatePurchased = datePurchased;
+        AmountPayable = amountPayable;
     }
     [ForeignKey("Customer")]
     public string CustomerName { get; set; } = string.Empty;
