@@ -5,8 +5,6 @@ import Products from "../components/index/products";
 import InstitutionalServices from "../components/index/institutionalServices";
 import BankingServices from "../components/index/bankingServices";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import isAuthenticated from "../components/auth/isAuthenticated";
 
 export async function getServerSideProps() {
   const marketplaceData = await axios.get('https://api.gsserviceexchange.online/api/service', {
@@ -32,15 +30,10 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ marketplaceData }) {
-  const [userAuthenticated, setUserAuthenticated] = useState(true);
-
-  useEffect(() => {
-    setUserAuthenticated(isAuthenticated());
-  },[]);
 
   return (
     <div className="bg-white">
-      <Navbar auth={userAuthenticated}/>
+      <Navbar/>
       <div className="divide-y divide-solid divide-grey_200">
         <Hero/>
         <Products productData={marketplaceData}/>

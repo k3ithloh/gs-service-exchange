@@ -12,7 +12,7 @@ export default NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        customerName: { label: "customerName", type: "text", },
+        customerName: { label: "username", type: "text", },
         password: {  label: "password", type: "password" }
       },
       async authorize(credentials, req) {
@@ -29,16 +29,9 @@ export default NextAuth({
           headers: { "Content-Type": "application/json-patch+json" }
         }).then(res => console.log(res))
         // console.log(res.json())
-        console.log(await res)
+        // console.log(await res)
         // const user = await res.json()
-        const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-  
-        // If no error and we have user data, return it
-        // if (res.ok && user) {
-        //   return user
-        // }
-        // Return null if user data could not be retrieved
-        return user
+        return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
       }
     })
   ],
