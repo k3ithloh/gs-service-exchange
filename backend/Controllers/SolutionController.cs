@@ -9,7 +9,7 @@ namespace rainbow_unicorn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "rainbow-unicorn-user")]
+    [Authorize(Roles = "rainbow-unicorn-customer")]
     public class SolutionController : ControllerBase
     {
         private readonly DataContext _context;

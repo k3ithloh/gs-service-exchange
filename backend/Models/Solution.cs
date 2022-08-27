@@ -34,5 +34,7 @@ public class Solution
     public string Category { get; set; }
     
     public ICollection<Feature>? Features { get; set; }
-    
+    public ICollection<SolutionCustomer>? SolutionCustomers { get; set; }
+
+
 }
