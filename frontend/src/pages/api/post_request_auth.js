@@ -3,7 +3,7 @@ import axios from 'axios';
 export default async function handler(req, res) {
   const params = new URLSearchParams({
     customerName: req.body.customerName,
-    solutionId: req.body.solutionId,
+    serviceId: req.body.serviceId,
   }).toString();
   const url = 'https://api.gsserviceexchange.online/api/' + req.headers.endpoint + '?' + params;
   try{
@@ -15,5 +15,6 @@ export default async function handler(req, res) {
     return res.status(200).json(resp.data)
   } catch (error) {
     console.error(error)
+    return res.status(500).json(error)
   }
 }
