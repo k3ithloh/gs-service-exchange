@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace rainbow_unicorn;
 
 public class CustomerStock
@@ -13,7 +15,10 @@ public class CustomerStock
         Interval = interval;
     }
 
+    [ForeignKey("Stock")]
     public string Ticker { get; set; } = string.Empty;
+    
+    [ForeignKey("Customer")]
     public string CustomerName { get; set; }
     public string Interval { get; set; }
     
