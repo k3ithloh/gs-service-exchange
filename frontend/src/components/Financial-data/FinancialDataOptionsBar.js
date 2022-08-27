@@ -12,7 +12,7 @@ const FinancialDataOptionsBar = (props) => {
     setStock(value);
     let userData = value;
     const searchWrapper = document.querySelector(".search-input");
-    const array = [];
+    var array = [];
     if (userData){
       array = suggestions[securityType].filter((data)=>{
         return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase())
@@ -52,7 +52,7 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Securities Type
         </div>
-        <select id="countries" class="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setSecurityType(target?.value)}>
+        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setSecurityType(target?.value)}>
           <option selected>Choose the securities</option>
           <option value="TIME_SERIES">Equities</option>
           <option value="FX">Forex</option>
@@ -76,7 +76,7 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Time In
         </div>
-        <select id="countries" class="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setTimeRange(target?.value)}>
+        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setTimeRange(target?.value)}>
           <option selected>Choose the time in</option>
           <option value="DAILY">Daily</option>
           <option value="WEEKLY">Weekly</option>
