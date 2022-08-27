@@ -35,7 +35,7 @@ public class DataSeeder
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
-            var s = new Stock(item["Ticker"], item["stockName"]);
+            var s = new Stock(item["Ticker"], item["StockName"]);
             _db.Stocks.Add(s);
             _db.SaveChanges();
         }

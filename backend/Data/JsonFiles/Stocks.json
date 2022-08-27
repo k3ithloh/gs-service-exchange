@@ -1,22 +1,22 @@
 [
   {
-    "ticker": "META",
-    "stockName": "Meta"
+    "Ticker": "META",
+    "StockName": "Meta"
   },
   {
-    "ticker": "AMZN",
-    "stockName": "Amazon"
+    "Ticker": "AMZN",
+    "StockName": "Amazon"
   },
   {
-    "ticker": "AAPL",
-    "stockName": "Apple"
+    "Ticker": "AAPL",
+    "StockName": "Apple"
   },
   {
-    "ticker": "NFLX",
-    "stockName": "Netflix"
+    "Ticker": "NFLX",
+    "StockName": "Netflix"
   },
   {
-    "ticker": "GOOGL",
-    "stockName": "Google"
+    "Ticker": "GOOGL",
+    "StockName": "Google"
   }
 ]
