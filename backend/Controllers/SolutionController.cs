@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 
@@ -23,6 +24,7 @@ namespace rainbow_unicorn.Controllers
 
         // Get all Solutions
         [HttpGet]
+        [SwaggerOperation(Summary = "Get all existing solutions by GS")]
         public async Task<ActionResult<List<Solution>>> Get()
         {
             return Ok(await _context.Solutions
@@ -31,8 +33,9 @@ namespace rainbow_unicorn.Controllers
         }
 
 
-        // Get a Solution based on a given SolutionTitle
+        // Get a Solution based on a given SolutionId
         [HttpGet("{solutionId}")]
+        [SwaggerOperation(Summary = "Retrieve solution details base on given ID")]
         public async Task<ActionResult<List<Solution>>> Get(int solutionId)
         {
             var solution = await _context.Solutions
