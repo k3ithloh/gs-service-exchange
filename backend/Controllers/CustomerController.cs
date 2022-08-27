@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,9 @@ namespace rainbow_unicorn.Controllers
         }
         
         // Get a Customer based on a given customerName
-        [HttpGet("{customerName}")]
-        public async Task<ActionResult<List<Customer>>> Get(string customerName)
+        [HttpGet("getCustomerDetails/{customerName}")]
+        [Description("Get details of a Customer")]
+        public async Task<ActionResult<List<Customer>>> GetCustomerDetails(string customerName)
         {
             var customer = await _context.Customers
                 .Include(c=>c.SolutionCustomers)
@@ -30,6 +32,20 @@ namespace rainbow_unicorn.Controllers
             if (customer == null)
                 return BadRequest("Customer not found.");
             return Ok(customer);
+        }
+        
+        [HttpGet("getCustomerSolutions/{customerName}")]
+        [Description("Get all the solutions that a Customer subscribed to.")]
+        // Get all subscriptions to solutions
+        public async Task<ActionResult<List<Customer>>> GetCustomerSolutions(string customerName)
+        {
+            var customer = await _context.Customers
+                .Include(c=>c.SolutionCustomers)
+                .FirstOrDefaultAsync(u => u.CustomerName == customerName);
+            var solutions = customer.SolutionCustomers;
+            if (solutions == null)
+                return BadRequest("Customer is not subscribed to any solutions.");
+            return Ok(solutions);
         }
     }
 }
