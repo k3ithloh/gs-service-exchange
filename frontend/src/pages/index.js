@@ -6,14 +6,15 @@ import InstitutionalServices from "../components/index/institutionalServices";
 import BankingServices from "../components/index/bankingServices";
 import axios from 'axios';
 
-export async function getStaticProps() {
-  const marketplaceData = await axios.get('https://api.gsserviceexchange.online/api/Solution', {
+export async function getServerSideProps() {
+  const marketplaceData = await axios.get('https://api.gsserviceexchange.online/api/service', {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
     }
   }).then(res => {
+      console.log(res.data)
       return res.data;
     }).catch(err => {
       console.log(err);
@@ -23,13 +24,15 @@ export async function getStaticProps() {
   return {
     props: {
       marketplaceData
+      // marketplaceData: [],
     }, // will be passed to the page component as props
   }
 }
 
 export default function Home({ marketplaceData }) {
+
   return (
-    <>
+    <div className="bg-white">
       <Navbar/>
       <div className="divide-y divide-solid divide-grey_200">
         <Hero/>
@@ -38,6 +41,6 @@ export default function Home({ marketplaceData }) {
         <BankingServices bankingData={marketplaceData}/>
       </div>
       <Footer/>
-    </>
+    </div>
   )
 }

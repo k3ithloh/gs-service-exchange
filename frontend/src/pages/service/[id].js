@@ -5,13 +5,13 @@ import axios from 'axios';
 async function subscribe(){
   console.log(localStorage.getItem("ACCESS_TOKEN"));
   const data = {
-    solutionId: 4,
+    serviceId: 4,
     customerName: 'string'
   }
   await axios.post('/api/post_request_auth', data, {
     headers: {
       'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN"),
-      'endpoint': 'SolutionCustomer'
+      'endpoint': 'ServiceCustomer'
     },
   }).then(res => {
     return res.data;
@@ -32,7 +32,7 @@ const hero = (serviceData) => {
     <div className="flex bg-grey_100 px-44 py-40">
       <div className="w-3/5 space-y-10">
         <div className="space-y-4">
-          <h1 className="text-5xl font-bold text-dark_blue">{serviceData.solutionTitle}</h1>
+          <h1 className="text-5xl font-bold text-dark_blue">{serviceData.serviceTitle}</h1>
           <h2 className="text-2xl font-semibold text-grey_600">{serviceData.category}</h2>
         </div>
         <p className="text-xl font-light">
@@ -79,18 +79,18 @@ export default function service({ serviceData }) {
 
 export async function getStaticPaths() {
   // Return a list of possible value for id
-  // const serviceIds = await axios.get('https://api.gsserviceexchange.online/api/service', {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
-  //   }
-  // }).then(res => {
-  //     return res.data;
-  //   }).catch(err => {
-  //     console.log(err);
-  //   }
-  // );
+  const serviceIds = await axios.get('https://api.gsserviceexchange.online/api/Service/AllId', {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
+    }
+  }).then(res => {
+      return res.data;
+    }).catch(err => {
+      console.log(err);
+    }
+  );
 
   // return serviceIds.map((serviceId) => {
   //   return {
@@ -99,11 +99,11 @@ export async function getStaticPaths() {
   //     }
   //   }
   // })
-  const serviceIds = ["1","2","3","4","5","10"];
+  // const serviceIds = ["1","2","3","4","5","10"];
   const paths = serviceIds.map(serviceId => {
     return {
       params: {
-        id: serviceId
+        id: String(serviceId)
       }
     }
   })
@@ -115,7 +115,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Fetch necessary data for the blog post using params.id
-  const serviceData = await axios.get('https://api.gsserviceexchange.online/api/solution/' + params.id, {
+  const serviceData = await axios.get('https://api.gsserviceexchange.online/api/service/' + params.id, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
