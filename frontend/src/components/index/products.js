@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import ProductCard from './productCard';
 
-export default function Products() {
+function Products({ productData }) {
   return (
     <div className="mx-44 py-20 space-y-10">
       <h2 className="text-4xl text-dark_blue font-bold">Products and Platforms</h2>
@@ -13,13 +13,16 @@ export default function Products() {
         {/* <div className="flex w-1/2 place-content-center"> */}
         {/* </div> */}
         <div className="p-10 w-2/5 space-y-4"></div>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+        {productData.map((product) => {
+          if (product.category === "Products and Platforms") {
+          return (
+            ProductCard(product)
+          )
+        }})}
       </div>
       
     </div>
   )
 }
+
+export default Products;

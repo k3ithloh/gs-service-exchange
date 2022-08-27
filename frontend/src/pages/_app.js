@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import '../../styles/globals.css';
+import '../../styles/FinancialDataOptionsBar.css';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -7,6 +7,14 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps}/>
     </>
   )
+}
+
+MyApp.getInitialProps = async (appContext) => {
+  let pageProps = {};
+  if (appContext.Component.getInitialProps) {
+    pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+  }
+  return { ...pageProps};
 }
 
 export default MyApp
