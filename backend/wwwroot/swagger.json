@@ -173,12 +173,12 @@
         ]
       }
     },
-    "/api/Customer/getCustomerSolutions/{customerName}": {
+    "/api/Customer/getCustomerServices/{customerName}": {
       "get": {
         "tags": [
           "Customer"
         ],
-        "summary": "Get all the solutions that a Customer subscribed to.",
+        "summary": "Get all the services that a Customer subscribed to.",
         "parameters": [
           {
             "name": "customerName",
@@ -573,12 +573,12 @@
         ]
       }
     },
-    "/api/Solution": {
+    "/api/Service": {
       "get": {
         "tags": [
-          "Solution"
+          "Service"
         ],
-        "summary": "Get all existing solutions by GS",
+        "summary": "Get all existing services by GS",
         "responses": {
           "200": {
             "description": "Success",
@@ -587,7 +587,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -595,7 +595,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -603,7 +603,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               }
@@ -623,15 +623,15 @@
         ]
       }
     },
-    "/api/Solution/{solutionId}": {
+    "/api/Service/{serviceId}": {
       "get": {
         "tags": [
-          "Solution"
+          "Service"
         ],
-        "summary": "Retrieve solution details base on given ID",
+        "summary": "Retrieve service details base on given ID",
         "parameters": [
           {
-            "name": "solutionId",
+            "name": "serviceId",
             "in": "path",
             "required": true,
             "schema": {
@@ -648,7 +648,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -656,7 +656,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -664,7 +664,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               }
@@ -684,12 +684,12 @@
         ]
       }
     },
-    "/api/Solution/AllId": {
+    "/api/Service/AllId": {
       "get": {
         "tags": [
-          "Solution"
+          "Service"
         ],
-        "summary": "Returns an array of all solution IDs",
+        "summary": "Returns an array of all service IDs",
         "responses": {
           "200": {
             "description": "Success",
@@ -698,7 +698,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -706,7 +706,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               },
@@ -714,7 +714,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Solution"
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               }
@@ -734,15 +734,15 @@
         ]
       }
     },
-    "/api/SolutionCustomer": {
+    "/api/ServiceCustomer": {
       "post": {
         "tags": [
-          "SolutionCustomer"
+          "ServiceCustomer"
         ],
         "summary": "Adds a new subscription for a customer.",
         "parameters": [
           {
-            "name": "solutionId",
+            "name": "serviceId",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -765,7 +765,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SolutionCustomer"
+                    "$ref": "#/components/schemas/ServiceCustomer"
                   }
                 }
               },
@@ -773,7 +773,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SolutionCustomer"
+                    "$ref": "#/components/schemas/ServiceCustomer"
                   }
                 }
               },
@@ -781,7 +781,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/SolutionCustomer"
+                    "$ref": "#/components/schemas/ServiceCustomer"
                   }
                 }
               }
@@ -1144,10 +1144,10 @@
             "type": "string",
             "nullable": true
           },
-          "solutionCustomers": {
+          "serviceCustomers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SolutionCustomer"
+              "$ref": "#/components/schemas/ServiceCustomer"
             },
             "nullable": true
           },
@@ -1253,24 +1253,24 @@
             "type": "string",
             "nullable": true
           },
-          "solutionId": {
+          "serviceId": {
             "type": "integer",
             "format": "int32"
           },
-          "solution": {
-            "$ref": "#/components/schemas/Solution"
+          "service": {
+            "$ref": "#/components/schemas/Service"
           }
         },
         "additionalProperties": false
       },
-      "Solution": {
+      "Service": {
         "type": "object",
         "properties": {
-          "solutionId": {
+          "serviceId": {
             "type": "integer",
             "format": "int32"
           },
-          "solutionTitle": {
+          "serviceTitle": {
             "type": "string",
             "nullable": true
           },
@@ -1304,24 +1304,24 @@
             },
             "nullable": true
           },
-          "solutionCustomers": {
+          "serviceCustomers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SolutionCustomer"
+              "$ref": "#/components/schemas/ServiceCustomer"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "SolutionCustomer": {
+      "ServiceCustomer": {
         "type": "object",
         "properties": {
           "customerName": {
             "type": "string",
             "nullable": true
           },
-          "solutionId": {
+          "serviceId": {
             "type": "integer",
             "format": "int32"
           },
@@ -1336,8 +1336,8 @@
           "customer": {
             "$ref": "#/components/schemas/Customer"
           },
-          "solution": {
-            "$ref": "#/components/schemas/Solution"
+          "service": {
+            "$ref": "#/components/schemas/Service"
           }
         },
         "additionalProperties": false
