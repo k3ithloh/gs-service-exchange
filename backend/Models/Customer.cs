@@ -6,7 +6,6 @@ public class Customer
 {
     public Customer()
     {
-        
     }
 
     public Customer(string customerName, byte[] passwordHash, byte[] passwordSalt, string fullName, string email)
@@ -28,4 +27,8 @@ public class Customer
     public ICollection<SolutionCustomer>? SolutionCustomers { get; set; }
 
     public ICollection<CreditCard>? CreditCards { get; set; }
+    
+    public ICollection<UserPurchase>? UserPurchases { get; set; }
+    
+    public ICollection<User>? Users { get; set; }
 }
