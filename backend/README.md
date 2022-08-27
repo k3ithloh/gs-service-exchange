@@ -7,7 +7,25 @@
 😂 .Net Entity Framework Core 6  
 🔢 postgresql
 
-## Deployment Pipeline
+## Run Migrations 🛼
+```sh
+dotnet ef migrations add <name>
+dotnet ef database update
+```
+
+## Connect to AWS RDS ⚾️
+Add new inbound rule for RDS' security group to allow your own IP.
+Run migration from the last production migration.
+```sh
+psql --host=awseb-e-msh2fb35ps-stack-awsebrdsdatabase-5zfcfe7844o3.cewrunjgyijw.ap-southeast-1.rds.amazonaws.com --port=5432 --username=cherylperyl --dbname=postgres    
+```
+
+If need to drop db:
+```sh
+DROP DATABASE <database name>;
+```
+
+## Deployment Pipeline 🏁
 (Let's see if we can automate this)
 
 Run the following commands in the project directory (---/backend) to package our code for deployment.
