@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, { useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
-import Link from 'next/link';
+import Link from "next/link";
 
 const LoginForm = () => {
-
   const router = useRouter();
 
   const [customerName, setCustomerName] = useState();
   const [password, setPassword] = useState();
   const [isError, setIsError] = useState(false);
 
-  async function login(){
+  async function login() {
     let login_data = {
         customerName: customerName,
         password: password,
@@ -50,12 +49,22 @@ const LoginForm = () => {
         <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" onChange={( {target} ) => setCustomerName(target?.value) } />
         </div>
         <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
             Password
-        </label>
-        <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={({target})=>setPassword(target?.value)} />
+          </label>
+          <input
+            className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
+            type="password"
+            placeholder="******************"
+            onChange={({ target }) => setPassword(target?.value)}
+          />
         </div>
         <div className="flex items-center justify-between mb-4">
+
             <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={ () => login()}>
                 Sign In
             </button>
@@ -71,7 +80,7 @@ const LoginForm = () => {
         </Link>
     </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
