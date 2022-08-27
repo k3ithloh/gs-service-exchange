@@ -2,13 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace rainbow_unicorn;
 
-public class Customer
+public class CustomerStock
 {
-    public Customer()
+    public CustomerStock()
     {
+        
     }
 
-    public Customer(string customerName, byte[] passwordHash, byte[] passwordSalt, string fullName, string email)
+    public CustomerStock(string customerName, byte[] passwordHash, byte[] passwordSalt, string fullName, string email)
     {
         CustomerName = customerName;
         PasswordHash = passwordHash;
@@ -27,8 +28,4 @@ public class Customer
     public ICollection<SolutionCustomer>? SolutionCustomers { get; set; }
 
     public ICollection<CreditCard>? CreditCards { get; set; }
-    
-    public ICollection<UserPurchase>? UserPurchases { get; set; }
-    
-    public ICollection<User>? Users { get; set; }
 }
