@@ -35,9 +35,7 @@ public class DataSeeder
         var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
         foreach (var item in items)
         {
-            float currentClose = float.Parse(item["CurrentClose"]);
-            DateTime lastUpdated = DateTime.Parse(item["LastUpdated"]);
-            var s = new Stock(item["Ticker"], currentClose, lastUpdated, item["Currency"]);
+            var s = new Stock(item["Ticker"], item["stockName"]);
             _db.Stocks.Add(s);
             _db.SaveChanges();
         }
