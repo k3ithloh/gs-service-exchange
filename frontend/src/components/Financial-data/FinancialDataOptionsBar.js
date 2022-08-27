@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import Script from 'next/script'
 import { suggestions } from './constants';
 
 const FinancialDataOptionsBar = (props) => {
@@ -7,6 +8,7 @@ const FinancialDataOptionsBar = (props) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [securityType, setSecurityType] = useState("");
   const [timeRange, setTimeRange] = useState("");
+  const [suggestion, setSuggestions] = useState([]);
 
   function filterStockOptions(value){
     setStock(value);
@@ -17,15 +19,15 @@ const FinancialDataOptionsBar = (props) => {
       array = suggestions[securityType].filter((data)=>{
         return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase())
       })
-      array = array.map((data)=>{
-        return `<li onclick="setStockName(${data})" style="cursor:pointer;">` + data + `</li>`;
-      })
+      // array = array.map((data)=>{
+      //   return `<li onclick="setStockName('${data}')" style="cursor:pointer;">` + data + `</li>`;
+      // })
     }
     checkToShowSuggestions(array);
   }
 
   function setStockName(name){
-    setStock(name)
+    setStock(name);
   }
 
   function checkToShowSuggestions(list){
@@ -35,9 +37,8 @@ const FinancialDataOptionsBar = (props) => {
       setShowSuggestions(false);
     } else {
       setShowSuggestions(true);
-      listData = list.join('');
+      setSuggestions(previous => [...list])
     }
-    suggBox.innerHTML = listData
   }
 
   function search(){
@@ -48,6 +49,7 @@ const FinancialDataOptionsBar = (props) => {
 
   return (
     <div className='w-full flex justify-between' style={{zIndex: '1'}}>
+      <Script src="./script.js" />
       <div>
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Securities Type
@@ -65,8 +67,13 @@ const FinancialDataOptionsBar = (props) => {
           Search Bar
         </div>
         <div className={showSuggestions ? 'search-input active' : 'search-input'}>
-          <input type="text" placeholder='Type to search..' onKeyUp={({target})=>filterStockOptions(target?.value)}/>
+          <input type="text" id="stock" placeholder='Type to search..' value={stock} onKeyUp={({target})=>filterStockOptions(target?.value)}/>
           <div className='autocom-box' id="box">
+            {
+              suggestion.map((data, key)=>{
+                return (<li key={key} onClick={()=>setStockName(data)} value={data} style={{cursor:'pointer'}}>{data}</li>)
+              })
+            }
           </div>
           <div className='icon'><i className='fas fa-search'></i></div>
         </div>
@@ -85,7 +92,7 @@ const FinancialDataOptionsBar = (props) => {
       </div>
       
       <div className="my-auto mt-5">
-        <button onClick={()=>search()} className="w-full rounded bg-blue-500 p-2 font-bold text-white hover:bg-blue-700">
+        <button onClick={()=>search()} className="w-full rounded bg-blue-500 p-2 font-bold border shadow-xl text-black hover:bg-blue-700">
           Add Widget
         </button>
       </div>
