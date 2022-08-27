@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import FinancialDataOptionsBar from "./FinancialDataOptionsBar";
-import { FinancialDataTable } from "./FinancialDataTable";
 import FinancialWidget from './FinancialWidget'
 
 const FinancialData = () => {
@@ -17,10 +16,10 @@ const FinancialData = () => {
     setFinancialWidget(previousWidgets => [...previousWidgets, data]);
   }
 
-  return (<div>
-            <div className="container mx-auto px-4">
+  return (
+            <div className="container mx-auto px-4 w-full">
               <FinancialDataOptionsBar parentCallback = {handleCallback} />
-              <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-4 mt-8" style={{zIndex: '-1'}}>
+              <div className="grid xl:grid-cols-2 grid-cols-1 gap-4 mt-8" style={{zIndex: '-1'}}>
                 {
                   financialWidget.map((data, key)=>{
                     return (<FinancialWidget className="mb-4" key={key} data={data} />)
@@ -28,7 +27,7 @@ const FinancialData = () => {
                 }
             </div>
             </div>
-        </div>);
+        );
 };
 
 export default FinancialData;
