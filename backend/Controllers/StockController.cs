@@ -9,7 +9,7 @@
 // {
 //     [Route("api/[controller]")]
 //     [ApiController]
-//     [Authorize(Roles = "rainbow-unicorn-user")]
+//     [Authorize(Roles = "rainbow-unicorn-customer")]
 //     public class StockController : ControllerBase
 //     {
 //         private readonly DataContext _context;

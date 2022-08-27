@@ -9,12 +9,12 @@ public class CreditCard
         
     }
 
-    public CreditCard(int number, string expiryDate, int cvv, string username)
+    public CreditCard(int number, string expiryDate, int cvv, string customerName)
     {
         Number = number;
         ExpiryDate = expiryDate;
         Cvv = cvv;
-        Username = username;
+        CustomerName = customerName;
     }
     public int Number { get; set; }
     
@@ -22,9 +22,9 @@ public class CreditCard
     
     public int Cvv { get; set; }
     
-    [ForeignKey("User")]
-    public string Username { get; set; } = string.Empty;
+    [ForeignKey("Customer")]
+    public string CustomerName { get; set; } = string.Empty;
     
-    public User User { get; set; }
+    public Customer Customer { get; set; }
     
 }

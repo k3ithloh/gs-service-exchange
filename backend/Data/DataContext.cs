@@ -10,11 +10,12 @@ public class DataContext : DbContext
     
     // Creates database tables
     // Degree points to the Degree.cs in models, Degrees refer to the table name in DB
-    public DbSet<User> Users { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     public DbSet<CreditCard> CreditCards { get; set; }
     public DbSet<Stock> Stocks { get; set; }
     public DbSet<Solution> Solutions { get; set; }
     public DbSet<Feature> Features { get; set; }
+    public DbSet<SolutionCustomer> SolutionCustomers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -22,13 +23,16 @@ public class DataContext : DbContext
         
         builder.UseIdentityColumns();
         
-        var userMap = new UserMap(builder.Entity<User>());
-        builder.Entity<User>();
+        var customerMap = new CustomerMap(builder.Entity<Customer>());
+        builder.Entity<Customer>();
         
         var creditCardMap = new CreditCardMap(builder.Entity<CreditCard>());
         builder.Entity<CreditCard>();
         
         var stockMap = new StockMap(builder.Entity<Stock>());
         builder.Entity<Stock>();
+        
+        var solutionCustomerMap = new SolutionCustomerMap(builder.Entity<SolutionCustomer>());
+        builder.Entity<SolutionCustomer>();
     }
 }
