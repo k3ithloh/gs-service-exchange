@@ -15,7 +15,13 @@ public class DataContext : DbContext
     public DbSet<Stock> Stocks { get; set; }
     public DbSet<Solution> Solutions { get; set; }
     public DbSet<Feature> Features { get; set; }
+    
     public DbSet<SolutionCustomer> SolutionCustomers { get; set; }
+    public DbSet<User> Users { get; set; }
+    
+    public DbSet<UserPayment> UserPayments { get; set; }
+    public DbSet<UserPurchase> UserPurchases { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
