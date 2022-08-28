@@ -9,12 +9,14 @@ public class UserPayment
         
     }
 
-    public UserPayment(string purchaseId, int paymentNumber, float amount, bool fulfilled)
+    public UserPayment(string purchaseId, int paymentNumber, float amount, bool fulfilled, DateTime dueDate, DateTime paymentDate)
     {
         PurchaseId = purchaseId;
         PaymentNumber = paymentNumber;
         Amount = amount;
         Fulfilled = fulfilled;
+        DueDate = dueDate;
+        PaymentDate = paymentDate;
     }
     
     [ForeignKey("UserPurchase")]
@@ -23,7 +25,9 @@ public class UserPayment
     public float Amount { get; set; }
     public bool Fulfilled { get; set; }
     
-    
+    public DateTime DueDate { get; set; }
+    public DateTime? PaymentDate { get; set; }
+
     public virtual UserPurchase? UserPurchase { get; set; }
     
 }

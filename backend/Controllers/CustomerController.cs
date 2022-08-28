@@ -94,9 +94,44 @@ namespace rainbow_unicorn.Controllers
             {
                 return BadRequest("No User Purchases");
             }
-
             return Ok(allPurchases);
-
         }
+        
+        [HttpGet("GetUserPayments/{customerName}")]
+        [SwaggerOperation(Summary = "Get all payments made by users under a Customer.")]
+        public async Task<ActionResult<List<Customer>>> GetUserPayments(string customerName)
+        {
+            
+            var allPurchases = await _context.UserPurchases
+                .Include(c => c.UserPayments)
+                .Where(c => c.CustomerName == customerName)
+                .ToListAsync();
+            if (allPurchases == null)
+            {
+                return BadRequest("No User Payments");
+            }
+            
+            var allPayments = new List<UserPaymentDto>();
+            foreach (var purchase in allPurchases)
+            {
+                var paymentObject = new UserPaymentDto
+                {
+                    PurchaseId = purchase.PurchaseId,
+                    PaymentNumber = purchase.PaymentNumber,
+                    PaymentAmount = purchase.UserPayments.Sum(c => c.PaymentAmount),
+                    PaymentDate = purchase.UserPayments.Max(c => c.PaymentDate)
+                };
+                UserPaymentDto(purchase.UserPayments);
+                allPayments.Add(purchase.UserPayments);
+                // foreach (var payment in purchaseList)
+                // {
+                //     
+                //     allPayments.Add(payment);
+                // }
+            }
+
+            return Ok(allPayments);
+        }
+        
     }
 }
