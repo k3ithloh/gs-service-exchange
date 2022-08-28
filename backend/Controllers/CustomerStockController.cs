@@ -30,14 +30,7 @@ namespace rainbow_unicorn.Controllers
             if (customerStock != null)
                 return Conflict("Stock already on customer's dashboard.");
             
-            customerStock = new CustomerStock(ticker, customerName, interval);
-            var stock =  await _context.Stocks
-                .FirstOrDefaultAsync(b=>b.Ticker == ticker);
-            if (stock == null)
-            {
-                var newStock = new Stock(ticker, stockType);
-                await _context.Stocks.AddAsync(newStock);
-            }
+            customerStock = new CustomerStock(ticker, customerName, interval, stockType);
             await _context.CustomerStocks.AddAsync(customerStock);
             await _context.SaveChangesAsync();
             

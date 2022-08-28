@@ -12,10 +12,10 @@ public class CustomerStockMap : BaseMap<CustomerStock>
         builder.Property(e=>e.Ticker).IsRequired();
         builder.Property(e=>e.Interval).IsRequired();
 
-        builder.HasOne(e => e.Stock)
-            .WithMany(e => e.CustomerStocks)
-            .HasForeignKey(e => e.Ticker)
-            .IsRequired();
+        // builder.HasOne(e => e.Stock)
+        //     .WithMany(e => e.CustomerStocks)
+        //     .HasForeignKey(e => e.Ticker)
+        //     .IsRequired();
 
         builder.HasOne(e => e.Customer)
             .WithMany(e => e.CustomerStocks)
