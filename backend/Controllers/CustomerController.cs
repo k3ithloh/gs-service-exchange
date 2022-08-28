@@ -114,20 +114,20 @@ namespace rainbow_unicorn.Controllers
             var allPayments = new List<UserPaymentDto>();
             foreach (var purchase in allPurchases)
             {
-                var paymentObject = new UserPaymentDto
+                var paymentList = purchase.UserPayments;
+                foreach (var payment in paymentList)
                 {
-                    PurchaseId = purchase.PurchaseId,
-                    PaymentNumber = purchase.PaymentNumber,
-                    PaymentAmount = purchase.UserPayments.Sum(c => c.PaymentAmount),
-                    PaymentDate = purchase.UserPayments.Max(c => c.PaymentDate)
-                };
-                UserPaymentDto(purchase.UserPayments);
-                allPayments.Add(purchase.UserPayments);
-                // foreach (var payment in purchaseList)
-                // {
-                //     
-                //     allPayments.Add(payment);
-                // }
+                    var paymentDto = new UserPaymentDto
+                    {
+                        PurchaseId = payment.PurchaseId,
+                        PaymentNumber = payment.PaymentNumber,
+                        Amount = payment.Amount,
+                        Fulfilled = payment.Fulfilled,
+                        DueDate = payment.DueDate,
+                        PaymentDate = payment.PaymentDate
+                    };
+                    allPayments.Add(paymentDto);
+                }
             }
 
             return Ok(allPayments);
