@@ -55,7 +55,7 @@ const index = ({marketplaceData, serviceData}) => {
           </div>
         </div>
         <div className="relative w-2/5 h-128">
-          <Image alt="service" src="/images/products.svg" layout="fill" objectFit="contain" />
+          <Image alt="service" src="/images/financial_dashboard.svg" layout="fill" objectFit="contain" />
         </div>
       </div>
     )

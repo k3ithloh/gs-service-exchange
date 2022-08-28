@@ -68,8 +68,8 @@ function service({ serviceData }) {
               datasets: [
                 {
                   label: 'No. Users Over Time',
-                  backgroundColor: 'rgba(255,99,132)',
-                  borderColor: 'rgba(255,99,132)',
+                  backgroundColor: 'rgb(60, 118, 159)',
+                  borderColor: 'rgb(60, 118, 159)',
                   data: [20, 22, 18, 33, 44, 55, 66, 77],
                 }
               ],
@@ -95,8 +95,8 @@ function service({ serviceData }) {
               datasets: [
                 {
                   label: 'No. Transactions Over Time',
-                  backgroundColor: 'rgba(255,99,132)',
-                  borderColor: 'rgba(255,99,132)',
+                  backgroundColor: 'rgb(60, 118, 159)',
+                  borderColor: 'rgb(60, 118, 159)',
                   data: [20, 22, 18, 33, 25, 55, 34, 77],
                 }
               ],
@@ -158,8 +158,8 @@ function service({ serviceData }) {
                 datasets: [
                   {
                     label: 'Missed Over Time',
-                    backgroundColor: 'rgba(255,99,132)',
-                    borderColor: 'rgba(255,99,132)',
+                    backgroundColor: 'rgb(60, 118, 159)',
+                    borderColor: 'rgb(60, 118, 159)',
                     data: [20, 22, 18, 33, 25, 55, 34, 77],
                   }
                 ],
