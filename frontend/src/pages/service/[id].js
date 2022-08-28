@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-
 function service({ serviceData }) {
   const [serviceId, setServiceId] = useState(serviceData.serviceId);
   const router = useRouter();
