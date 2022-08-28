@@ -977,7 +977,7 @@
         "tags": [
           "Stock"
         ],
-        "summary": "Retrieve a stock data from external API.",
+        "summary": "Retrieve a stock data from our API.",
         "parameters": [
           {
             "name": "stocktype",
