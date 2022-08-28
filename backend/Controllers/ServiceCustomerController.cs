@@ -38,5 +38,17 @@ namespace rainbow_unicorn.Controllers
             
             return Ok(await _context.ServiceCustomers.ToListAsync());
         }
+        
+        // Check if user is already subscribed to the service
+        [HttpGet("CheckSubscription/{customerName}/{serviceId}")]
+        [SwaggerOperation("Returns a bool to indicate if a customer is already subscribed to the service.")]
+        public async Task<ActionResult<bool>> CheckSubscription(int serviceId, string customerName)
+        {
+            var subscription = await _context.ServiceCustomers
+                .FirstOrDefaultAsync(x => (x.ServiceId == serviceId) && (x.CustomerName == customerName));
+            if (subscription != null)
+                return true;
+            return false;
+        }
     }
 }
