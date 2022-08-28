@@ -27,7 +27,7 @@ namespace rainbow_unicorn.Controllers
         }
 
         [HttpGet("{stocktype}/{interval}/{symbol}")]
-        [SwaggerOperation("Retrieve a stock data from external API.")]
+        [SwaggerOperation("Retrieve a stock data from our API.")]
         public async Task<IActionResult> GetStocks(string stocktype, string interval, string symbol)
         {
             byte[] API_KEY = System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:API_KEY").Value);
