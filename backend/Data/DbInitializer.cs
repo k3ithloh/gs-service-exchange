@@ -16,11 +16,11 @@ public class DbInitializer
         _db.Database.EnsureCreated();
 
         // seed entities with no foreign keys first
-        if (!_db.Stocks.Any())
-        {
-            var seeder = new DataSeeder(_db, _env);
-            seeder.SeedStocks();
-        }
+        // if (!_db.Stocks.Any())
+        // {
+        //     var seeder = new DataSeeder(_db, _env);
+        //     seeder.SeedStocks();
+        // }
         if (!_db.Services.Any())
         {
             var seeder = new DataSeeder(_db, _env);

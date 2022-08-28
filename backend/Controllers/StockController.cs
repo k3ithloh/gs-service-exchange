@@ -66,17 +66,17 @@ namespace rainbow_unicorn.Controllers
         // }
 
 
-        // Get a Stock based on a given Stock Ticker (ticker)
-        [HttpGet("{ticker}")]
-        [SwaggerOperation("Retrieve stock type base on it's ticker.")]
-        public async Task<ActionResult<List<Stock>>> Get(string ticker)
-        {
-            var stock = await _context.Stocks
-                .FirstOrDefaultAsync(b => b.Ticker == ticker);
-            if (stock == null)
-                return BadRequest("Stock not recorded in our database.");
-            return Ok(stock);
-        }
+        // // Get a Stock based on a given Stock Ticker (ticker)
+        // [HttpGet("{ticker}")]
+        // [SwaggerOperation("Retrieve stock type base on it's ticker.")]
+        // public async Task<ActionResult<List<Stock>>> Get(string ticker)
+        // {
+        //     var stock = await _context.Stocks
+        //         .FirstOrDefaultAsync(b => b.Ticker == ticker);
+        //     if (stock == null)
+        //         return BadRequest("Stock not recorded in our database.");
+        //     return Ok(stock);
+        // }
         
         // // Add a new Stock
         // [HttpPost]
