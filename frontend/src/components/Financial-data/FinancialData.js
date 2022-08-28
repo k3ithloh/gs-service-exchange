@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import FinancialDataOptionsBar from "./FinancialDataOptionsBar";
 import FinancialWidget from './FinancialWidget'
-import axios from 'axios'
 
 const FinancialData = ({ marketplaceData }) => {
-  const [financialWidget, setFinancialWidget] = useState([marketplaceData]);
+  const [financialWidget, setFinancialWidget] = useState(marketplaceData);
   const [addSuccess, setAddSuccess] = useState(false);
   const [addConflict, setAddConflict] = useState(false);
 
@@ -47,7 +46,7 @@ const FinancialData = ({ marketplaceData }) => {
               <div className="grid xl:grid-cols-2 grid-cols-1 gap-4 mt-8" style={{zIndex: '-1'}}>
                 {
                   financialWidget.map((data, key)=>{
-                    
+                    return (<FinancialWidget key={key} data={data} />)
                   })
                 }
             </div>
