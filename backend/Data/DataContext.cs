@@ -11,8 +11,8 @@ public class DataContext : DbContext
     // Creates database tables
     // Degree points to the Degree.cs in models, Degrees refer to the table name in DB
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<CreditCard> CreditCards { get; set; }
-    public DbSet<Stock> Stocks { get; set; }
+    // public DbSet<CreditCard> CreditCards { get; set; }
+    // public DbSet<Stock> Stocks { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Feature> Features { get; set; }
     
@@ -36,8 +36,8 @@ public class DataContext : DbContext
         var creditCardMap = new CreditCardMap(builder.Entity<CreditCard>());
         builder.Entity<CreditCard>();
         
-        var stockMap = new StockMap(builder.Entity<Stock>());
-        builder.Entity<Stock>();
+        // var stockMap = new StockMap(builder.Entity<Stock>());
+        // builder.Entity<Stock>();
         
         var serviceCustomerMap = new ServiceCustomerMap(builder.Entity<ServiceCustomer>());
         builder.Entity<ServiceCustomer>();

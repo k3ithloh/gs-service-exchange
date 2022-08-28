@@ -29,17 +29,17 @@ public class DataSeeder
     
     // Seeder Methods for each model
 
-    public void SeedStocks()
-    {
-        string data = GetData("Stocks");
-        var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
-        foreach (var item in items)
-        {
-            var s = new Stock(item["Ticker"], item["StockType"]);
-            _db.Stocks.Add(s);
-            _db.SaveChanges();
-        }
-    }
+    // public void SeedStocks()
+    // {
+    //     string data = GetData("Stocks");
+    //     var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
+    //     foreach (var item in items)
+    //     {
+    //         var s = new Stock(item["Ticker"], item["StockType"]);
+    //         _db.Stocks.Add(s);
+    //         _db.SaveChanges();
+    //     }
+    // }
 
     public void SeedServices()
     {

@@ -64,20 +64,19 @@ namespace rainbow_unicorn.Controllers
         public async Task<ActionResult<List<Customer>>> GetStocks(string customerName)
         {
             var allRecords = await _context.CustomerStocks
-                .Include(c => c.Stock)
                 .ToListAsync();
             
-            var filtered = new List<string>();
+            var filtered = new List<CustomerStock>();
             
             foreach(var record in allRecords)
             {
                 if (record.CustomerName == customerName)
                 {
-                    filtered.Add(record.Stock.Ticker);
+                    filtered.Add(record);
                 }
             }
             if (filtered.Count == 0)
-                return BadRequest("Customer has no stocks in their dashboard.");
+                return BadRequest("Customer has no stocks on their dashboard.");
             
             return Ok(filtered);
         }
