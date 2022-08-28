@@ -31,11 +31,11 @@ public class DbInitializer
             var seeder = new DataSeeder(_db, _env);
             seeder.SeedFeatures();
         }
-        if (!_db.Users.Any())
-        {
-            var seeder = new DataSeeder(_db, _env);
-            seeder.SeedUsers();
-        }
+        // if (!_db.Users.Any())
+        // {
+        //     var seeder = new DataSeeder(_db, _env);
+        //     seeder.SeedUsers();
+        // }
         
     }
 }

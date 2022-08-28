@@ -180,13 +180,18 @@
     "Description": "An all in one platform to view and make informed decisions"
   },
   {
-  "13": "13",
-  "Improves Customer Service": "Fuss Free",
-  "By offering a BNPL payment option it gives customers more control over how they want to pay, leading to a better experience": "By leveraging our existing infrastructure, setup BNPL payment options easily and reliably"
-},
+    "ServiceId": "13",
+    "FeatureTitle": "Fuss Free",
+    "Description": "By leveraging our existing infrastructure, setup BNPL payment options easily and reliably"
+  },
   {
-    "13": "13",
-    "Improves Customer Service": "Increase Reach",
-    "By offering a BNPL payment option it gives customers more control over how they want to pay, leading to a better experience": "With BNPL, you expand your reach to customers with less upfront capital"
+    "ServiceId": "13",
+    "FeatureTitle": "Increase Reach",
+    "Description": "With BNPL, you expand your reach to customers with less upfront capital"
+  },
+  {
+    "ServiceId": "13",
+    "FeatureTitle": "Improves Customer Service",
+    "Description": "By offering a BNPL payment option it gives customers more control over how they want to pay, leading to a better experience"
   }
 ]
