@@ -78,4 +78,17 @@ public class DataSeeder
             _db.SaveChanges();
         }
     }
+
+    public void SeedUsers()
+    {
+        string data = GetData("Users");
+        var items = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(data);
+        foreach (var item in items)
+        {
+            DateTime createdDate = DateTime.Parse(item["CreatedDate"]);
+            var u = new User(item["UserId"],item["CustomerName"], createdDate);
+            _db.Users.Add(u);
+            _db.SaveChanges();
+        }
+    }
 }
