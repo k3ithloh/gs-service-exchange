@@ -1,6 +1,6 @@
 # rainbow-unicorn-backend 🌈 🦄
 
-📡 Live @ http://rainbowunicornapi-env.eba-2hn3den4.ap-southeast-1.elasticbeanstalk.com/  
+📡 Live @ https://api.gsserviceexchange.online/
 (But APIs can't be used on its own need JWTs.)
 
 ## Stack
