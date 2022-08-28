@@ -49,20 +49,20 @@ const FinancialWidget = (props) => {
   return (
     <div className="rounded-lg border border-black text-center p-4">
       <Line
-      datasetIdKey='id'
-      data={{
-        labels: chartXvalues,
-        datasets: [
-          {
-            label: label,
-            id: 1,
-            data: chartYvalues,
-            backgroundColor: 'rgb(60, 118, 159)',
-            borderColor: 'rgb(60, 118, 159)',
-          }
-        ],
-      }}
-    />
+        datasetIdKey='id'
+        data={{
+          labels: chartXvalues,
+          datasets: [
+            {
+              label: label,
+              id: 1,
+              data: chartYvalues,
+              backgroundColor: 'rgb(60, 118, 159)',
+              borderColor: 'rgb(60, 118, 159)',
+            }
+          ],
+        }}
+      />
     </div>
   )
 }

@@ -81,7 +81,7 @@ const index = ({marketplaceData, serviceData}) => {
         </Link>
       </div>
       <div className="absolute border-grey_200 border w-4/5 mx-44"></div>
-      <div className="flex">
+      <div className="flex space-y-10 my-20">
         <FinancialData marketplaceData={marketplaceData}/>
       </div>
       <Footer/>
