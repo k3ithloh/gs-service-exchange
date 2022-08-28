@@ -10,7 +10,7 @@ export const DocumentationRow = (props) => {
   }
 
   return (
-    <div className='my-6 w-full container space-y-4' style={{height: '45px'}}>
+    <div className='my-6 space-y-4' style={{height: '45px'}}>
       <div class="text-xl font-semibold text-grey_600">
         {props.data.title}
       </div>
@@ -22,8 +22,8 @@ export const DocumentationRow = (props) => {
               : (<svg className="checkmark pb-2" style={{color: 'white', stroke:'white', width: '40px', height: '40px', strokeWidth: '2'}} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"><path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>)
             }
               </button>
-        </span>
-        <input type="search" id={props.data} disabled value={props.data.url} name="q" style={{backgroundColor: '#262626', color: 'white'}} className="bg-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900 p-2 w-full rounded-lg" autocomplete="off" />
+          </span>
+        <input type="search" id={props.data} disabled value={props.data.url} name="q" style={{backgroundColor: '#262626', color: 'white'}} className="bg-gray-600 pl-10 focus:outline-none focus:bg-white focus:text-gray-900 py-4 w-full rounded-lg" autocomplete="off" />
       </div>
     </div>
   )

@@ -53,74 +53,130 @@ function service({ serviceData }) {
             Getting Started
           </h3>
           <p className='text-xl font-light'>
-            In this 10-minute quickstart, you'll use the GSX API to get the latest price of asset classes. Feel free to follow along this tutorial or use the provided dashboard in <span className='font-semibold'>Overview</span>.
-            For a comprehensive view of available APIs, do head over to <Link href="https://api.gsserviceexchange.online/#Stock/"><a className='text-blue'>our API documentation page</a></Link>.
+            In this 10-minute quickstart, you'll use the GSX API to integrate our BNPL service into your application. This will allow you to offer BNPL services to your customers fast, seamlessly and most importantly, securely.
+            Feel free to follow along this tutorial or use the provided dashboard in <span className='font-semibold'>Overview</span>.
+            For a comprehensive view of available APIs, do head over to <Link href="https://api.gsserviceexchange.online/#User/"><a className='text-blue'>our API documentation page</a></Link>.
           </p>
           <h3 className='text-3xl text-blue font-semibold'>
             API Endpoints
           </h3>
           <p className='text-xl font-light'>
-            Generally, the API request can be broken down into the <span className='text-dark_blue'>asset class</span>, <span className='text-dark_blue'>ticker symbol</span>, and <span className='text-dark_blue'>time horizon</span>.
-            We'll run throw a few examples of how to query common combinations of these parameters so that you can easily integrate our data service into your application.
+            There are 3 main endpoints that you'll interact with: <span className='text-dark_blue'>/User</span>, <span className='text-dark_blue'>/UserPayment</span>, and <span className='text-dark_blue'>/UserPurchase</span>.
+            These endpoints will allow you to create, update, and delete users, payments, and purchases.
           </p>
         </div>
 
+
         <div className='space-y-8'>
+          <h4 className="text-2xl font-bold text-white w-full rounded-lg bg-dark_blue p-4">/Users</h4>
           <h4 className='text-2xl text-dark_blue font-semibold'>
-            Equities
+            Get all users
           </h4>
           <p className='text-xl font-light'>
-            We support all equities on public stock exchanges, including NYSE, NASDAQ and LSE.
-            For equities, we apply the following parameters:
+            Use this endpoint to retrieve all your users' information.
           </p>
           <ul className='ml-10'>
-            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>TIME_SERIES</li>
-            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
-            <li className='font-light text-lg'><span className='italic'>Symbol: </span>EQUITY_NAME</li>
+            <li className='font-light text-lg'><span className='italic'>customerName: </span>Your username</li>
           </ul>
           <div className='space-y-20'>
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/TIME_SERIES/${TIME_INTERVAL}/${EQUITY_NAME} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/TIME_SERIES/daily/aapl -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/User/${CUSTOMER_NAME} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/User/username -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
               title: "Example Request"}} />
           </div>
         </div>
 
         <div className='space-y-8'>
           <h4 className='text-2xl text-dark_blue font-semibold'>
-            Forex
+            Create user
           </h4>
           <p className='text-xl font-light'>
-            We support all forex pairs on public markets.
-            For forex, we apply the following parameters:
+            Use this endpoint to create a new user and a new purchase record.
           </p>
           <ul className='ml-10'>
-            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>FX</li>
-            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
-            <li className='font-light text-lg'><span className='italic'>Symbol: </span>ForexName</li>
+            <li className='font-light text-lg'><span className='italic'>userId: </span>User ID</li>
+            <li className='font-light text-lg'><span className='italic'>customerName: </span>Your Username</li>
+            <li className='font-light text-lg'><span className='italic'>createdDate: </span>Current Datetime</li>
+            <li className='font-light text-lg'><span className='italic'>userPurchases: </span>Array containing purchase information</li>
           </ul>
           <div className='space-y-20'>
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/FX/${TIME_INTERVAL}/${ForexName} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/FX/daily/AED -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+            <DocumentationRow data={{url:'curl -X POST https://api.gsserviceexchange.online/api/User -H "Authorization: Bearer xxxxx" -d \'{"userId": ${USER_ID}, "customerName": ${CUSTOMER_NAME}, "createdDate": ${CURRENT_DATETIME}, "userPurchases": ${$USER_PURCHASES}}\'', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/FX/daily/AED -d \'{"userId": 234578, "customerName": "username", "createdDate": "2022-08-28T06:49:37.435Z", "userPurchases": []}\' -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
               title: "Example Request"}} />
           </div>
         </div>
 
         <div className='space-y-8'>
           <h4 className='text-2xl text-dark_blue font-semibold'>
-            Crypto
+            Get purchases by user
           </h4>
           <p className='text-xl font-light'>
-            We support most Crytocurrencies available on large exchanges.
-            For Cryptocurrencies, we apply the following parameters:
+            Use this endpoint to retrieve purchases by individual users.
           </p>
           <ul className='ml-10'>
-            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>DIGITAL_CURRENCY</li>
-            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
-            <li className='font-light text-lg'><span className='italic'>Symbol: </span>CryptoName</li>
+            <li className='font-light text-lg'><span className='italic'>userId: </span>User ID</li>
           </ul>
           <div className='space-y-20'>
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/DIGITAL_CURRENCY/${TIME_INTERVAL}/${CryptoName} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
-            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/DIGITAL_CURRENCY/daily/btc -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/User/${USER_ID} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/User/234578 -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className="text-2xl font-bold text-white w-full rounded-lg bg-dark_blue p-4">/UserPayment</h4>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Get users' payments by payment ID
+          </h4>
+          <p className='text-xl font-light'>
+            Use this endpoint to retrieve all payments belonging to a specific purchase.
+          </p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>purchaseId: </span>Purchase ID of customer</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/UserPayment/payment/${PURCHASE_ID} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/UserPayment/payment/22222 -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className="text-2xl font-bold text-white w-full rounded-lg bg-dark_blue p-4">/UsersPurchase</h4>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Get details of a purchase by purchase ID
+          </h4>
+          <p className='text-xl font-light'>
+            Use this endpoint to retrieve all details of a specific purchase ID
+          </p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>purchaseId: </span>Purchase ID of customer</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/UserPurchase/${PURCHASE_ID} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/UserPurchase/22222 -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Create a purchase record
+          </h4>
+          <p className='text-xl font-light'>
+            Use this endpoint to create a new purchase record.   
+          </p>
+          <p className="font-bold">This endpoint should only be used in Production as each request is attached with a purchase contract for credit between you and Goldman Sachs.</p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>purchaseId: </span>Purchase ID of customer</li>
+            <li className='font-light text-lg'><span className='italic'>customerName: </span>Your Username</li>
+            <li className='font-light text-lg'><span className='italic'>purchaseDate: </span>Current Datetime</li>
+            <li className='font-light text-lg'><span className='italic'>userId: </span>Your user's ID</li>
+            <li className='font-light text-lg'><span className='italic'>amount: </span>Amount to be credited</li>
+            <li className='font-light text-lg'><span className='italic'>numberOfPayments: </span>Desired number of payback payments</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X POST https://api.gsserviceexchange.online/api/UserPurchase -H "Authorization: Bearer xxxxx" -d \'{"purchaseId": ${PURCHASE_ID}, "customerName": ${CUSTOMER_NAME}, "purchaseDate": ${CURRENT_DATETIME}, "userId": ${USER_ID}, "amount": ${AMOUNT}, "numberOfPayments": ${NUMBER_OF_PAYMENTS}}\'', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X POST https://api.gsserviceexchange.online/api/UserPurchase -d \'{"purchaseId": 234578, "customerName": "username", "purchaseDate": "2022-08-28T06:49:37.435Z", "userId": 203489, "amount": 200, "numberOfPayments": 3}\' -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
               title: "Example Request"}} />
           </div>
         </div>
