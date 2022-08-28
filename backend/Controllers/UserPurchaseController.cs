@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 
@@ -22,7 +23,7 @@ namespace rainbow_unicorn.Controllers
 
         // Get a UserPurchase given a PurchaseId)
         [HttpGet("{purchaseid}")]
-        // [ApiExplorerSettings(IgnoreApi = true)]
+        [SwaggerOperation(Summary = "Get a specific User Purchase")]
         public async Task<ActionResult<List<User>>> Get(string purchaseid)
         {
             var query = await _context.UserPurchases
@@ -35,31 +36,82 @@ namespace rainbow_unicorn.Controllers
 
         // Add a new UserPurchase
         [HttpPost]
-        // [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult<List<UserPurchase>>> AddUser(UserPurchase userpurchase)
+        [SwaggerOperation(Summary = "Add new purchase made by a user.")]
+        public async Task<ActionResult<List<UserPurchase>>> AddUserPurchase(UserPurchaseDto userPurchaseDto)
         {
-            var userPurchase = await _context.UserPurchases
-                .FirstOrDefaultAsync(u=>u.PurchaseId == userpurchase.PurchaseId);
-            if (userPurchase != null)
-                return Conflict("UserPurchase already exists");
-            await _context.UserPurchases.AddAsync(userpurchase);
-            await _context.SaveChangesAsync();
+            // update amount payable
+            var customerService = await _context.ServiceCustomers
+                .FirstOrDefaultAsync(s => (s.CustomerName == userPurchaseDto.CustomerName) && (s.ServiceId == 13));
+            if (customerService == null)
+                return BadRequest("Customer is not Subscribed to the BNPL Service.");
 
-            return Ok(await _context.Users.ToListAsync());
-        }
-        
-
-        //Delete a User
-        [HttpDelete]
-        // [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult<List<User>>> DeleteUser(string userid, string customername)
-        {
-            var user = await _context.Users.FindAsync(userid, customername);
+            customerService.AmountPayable = customerService.AmountPayable + userPurchaseDto.PurchaseAmount;
+                    
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserId == userPurchaseDto.UserId);
             if (user == null)
-                return BadRequest("No Users found.");
-            _context.Users.Remove(user);
+            {
+                user = new User(userPurchaseDto.UserId, userPurchaseDto.CustomerName, DateTime.Now);
+                await _context.Users.AddAsync(user);
+            }
+
+            // add purchase
+            string purchaseId = GenerateId();
+            while (PurchaseExists(purchaseId))
+            {
+                purchaseId = GenerateId();
+            }
+            var purchase = new UserPurchase(purchaseId, 
+                DateTime.Now, 
+                userPurchaseDto.CustomerName, 
+                userPurchaseDto.UserId, 
+                userPurchaseDto.PurchaseAmount, 
+                userPurchaseDto.NumberOfPayments);
+            await _context.UserPurchases.AddAsync(purchase);
+
+            
+            // add payments
+            float paymentAmount = userPurchaseDto.PurchaseAmount / userPurchaseDto.NumberOfPayments;
+
+            for (int i = 1; i <= userPurchaseDto.NumberOfPayments; i++)
+            {
+                var payment = new UserPayment(purchaseId, i, paymentAmount, false);
+                await _context.UserPayments.AddAsync(payment);
+            }
+
             await _context.SaveChangesAsync();
-            return Ok(await _context.Users.ToListAsync());
+
+            return Ok(await _context.UserPurchases.ToListAsync());
+        }
+
+        // //Delete a User
+        // [HttpDelete]
+        // // [ApiExplorerSettings(IgnoreApi = true)]
+        // public async Task<ActionResult<List<User>>> DeleteUser(string userid, string customername)
+        // {
+        //     var user = await _context.Users.FindAsync(userid, customername);
+        //     if (user == null)
+        //         return BadRequest("No Users found.");
+        //     _context.Users.Remove(user);
+        //     await _context.SaveChangesAsync();
+        //     return Ok(await _context.Users.ToListAsync());
+        // }
+
+        private string GenerateId()
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, 36)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private bool PurchaseExists(string purchaseId)
+        {
+            var purchase = _context.UserPurchases
+                .FirstOrDefault(x => x.PurchaseId == purchaseId);
+            if (purchase == null)
+                return false;
+            return true;
         }
 
     }

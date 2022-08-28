@@ -22,15 +22,29 @@ namespace rainbow_unicorn.Controllers
         }
 
         [HttpGet("payment/{purchaseid}")]
-        [SwaggerOperation(Summary = "Get an array of payments for purchase")]
+        [SwaggerOperation(Summary = "Get an all payments related to a purchase.")]
         public async Task<ActionResult<List<UserPayment>>> GetUserPayments(string purchaseid)
         {
-            var user = await _context.UserPayments
+            var userPayments = await _context.UserPayments
                 .Where(u=>u.PurchaseId == purchaseid)
                 .ToListAsync();
-            if (user == null)
-                return BadRequest("No Payments has been made for purchase");
-            return Ok(user);
+            if (userPayments == null)
+                return BadRequest("Purchase does not exist");
+            return Ok(userPayments);
+        }
+        
+        [HttpPut("paid/{purchaseid}")]
+        [SwaggerOperation(Summary = "Mark a payment as paid.")]
+        public async Task<ActionResult<List<UserPayment>>> UpdatePaymentStatus(string purchaseid)
+        {
+            var userPayment = await _context.UserPayments
+                .FirstOrDefaultAsync(u => (u.PurchaseId == purchaseid) && (u.Fulfilled == false));
+            if (userPayment == null)
+                return BadRequest("All Payments have been made");
+
+            userPayment.Fulfilled = true;
+            await _context.SaveChangesAsync();
+            return Ok(userPayment);
         }
     }
 }
