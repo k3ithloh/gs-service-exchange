@@ -3,7 +3,6 @@ import Footer from "../../components/index/footer";
 import axios from 'axios';
 
 async function subscribe(){
-  console.log(localStorage.getItem("ACCESS_TOKEN"));
   const data = {
     serviceId: 4,
     customerName: 'string'
@@ -19,7 +18,6 @@ async function subscribe(){
     console.log(err);
   });
 
-  console.log(req);
 }
 
 const handleClick = (event) => {
