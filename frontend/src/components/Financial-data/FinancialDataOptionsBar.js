@@ -61,10 +61,10 @@ const FinancialDataOptionsBar = (props) => {
     <div className='w-full flex justify-between mt-5' style={{zIndex: '1'}}>
       <div>
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
-          Securities Type
+          Asset Class
         </div>
-        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" value="original" onChange={({target})=>setSecurityType(target?.value)}>
-          <option value="original">Choose the securities</option>
+        <select id="countries" className="rounded-xl w-full p-3 border border-blue" value="original" onChange={({target})=>setSecurityType(target?.value)}>
+          <option value="original">Choose the asset class</option>
           <option value="TIME_SERIES">Equities</option>
           <option value="FX">Forex</option>
           <option value="DIGITAL_CURRENCY">Crypto</option>
@@ -72,8 +72,8 @@ const FinancialDataOptionsBar = (props) => {
       </div>
       
       <div className='wrapper'>
-        <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
-          Search Bar
+        <div className="block text-black text-sm font-bold my-auto" htmlFor="search">
+          Search Ticker
         </div>
         <div className={showSuggestions ? 'search-input active' : 'search-input'}>
           <input type="text" id="stock" placeholder='Type to search..' value={stock} onKeyUp={({target})=>filterStockOptions(target?.value)}/>
@@ -92,7 +92,7 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Time In
         </div>
-        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setTimeRange(target?.value)}>
+        <select id="countries" className="rounded-xl w-full p-3 border border-blue" onChange={({target})=>setTimeRange(target?.value)}>
           <option selected>Choose the time in</option>
           <option value="DAILY">Daily</option>
           <option value="WEEKLY">Weekly</option>
@@ -101,7 +101,7 @@ const FinancialDataOptionsBar = (props) => {
       </div>
       
       <div className="my-auto mt-5">
-        <button onClick={()=>search()} className="w-full rounded border border-black p-2 shadow-xl font-bold text-black hover:bg-blue-700">
+        <button onClick={()=>search()} className="w-full rounded-xl bg-blue py-3 px-5 font-semibold text-white hover:bg-dark_blue text-lg">
           Add Widget
         </button>
       </div>

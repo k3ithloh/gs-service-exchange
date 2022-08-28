@@ -64,13 +64,82 @@ const index = ({ serviceData }) => {
         </Link>
       </div>
       <div className="absolute border-grey_200 border w-4/5 mx-44"></div>
-      <div>
-        <div className='flex flex-col justify-center mx-auto'>
-          {
-            api.map((data, key)=>{
-              return (<DocumentationRow key={key} data={data} />)
-            })
-          }
+      <div className='flex flex-col justify-center mx-44 my-20 space-y-20'>
+        <div className='space-y-8'>
+          <h3 className='text-3xl text-blue font-semibold'>
+            Getting Started
+          </h3>
+          <p className='text-xl font-light'>
+            In this 10-minute quickstart, you'll use the GSX API to get the latest price of asset classes. Feel free to follow along this tutorial or use the provided dashboard in <span className='font-semibold'>Overview</span>.
+            For a comprehensive view of available APIs, do head over to <Link href="https://api.gsserviceexchange.online/#Stock/"><a className='text-blue'>our API documentation page</a></Link>.
+          </p>
+          <h3 className='text-3xl text-blue font-semibold'>
+            API Endpoints
+          </h3>
+          <p className='text-xl font-light'>
+            Generally, the API request can be broken down into the <span className='text-dark_blue'>asset class</span>, <span className='text-dark_blue'>ticker symbol</span>, and <span className='text-dark_blue'>time horizon</span>.
+            We'll run throw a few examples of how to query common combinations of these parameters so that you can easily integrate our data service into your application.
+          </p>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Equities
+          </h4>
+          <p className='text-xl font-light'>
+            We support all equities on public stock exchanges, including NYSE, NASDAQ and LSE.
+            For equities, we apply the following parameters:
+          </p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>TIME_SERIES</li>
+            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
+            <li className='font-light text-lg'><span className='italic'>Symbol: </span>EQUITY_NAME</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/TIME_SERIES/${TIME_INTERVAL}/${EQUITY_NAME} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/TIME_SERIES/daily/aapl -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Forex
+          </h4>
+          <p className='text-xl font-light'>
+            We support all forex pairs on public markets.
+            For forex, we apply the following parameters:
+          </p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>FX</li>
+            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
+            <li className='font-light text-lg'><span className='italic'>Symbol: </span>ForexName</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/FX/${TIME_INTERVAL}/${ForexName} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/FX/daily/AED -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
+        </div>
+
+        <div className='space-y-8'>
+          <h4 className='text-2xl text-dark_blue font-semibold'>
+            Crypto
+          </h4>
+          <p className='text-xl font-light'>
+            We support most Crytocurrencies available on large exchanges.
+            For Cryptocurrencies, we apply the following parameters:
+          </p>
+          <ul className='ml-10'>
+            <li className='font-light text-lg'><span className='italic'>Asset Class: </span>DIGITAL_CURRENCY</li>
+            <li className='font-light text-lg'><span className='italic'>Time Interval: </span>DAILY or WEEKLY or MONTHLY</li>
+            <li className='font-light text-lg'><span className='italic'>Symbol: </span>CryptoName</li>
+          </ul>
+          <div className='space-y-20'>
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/DIGITAL_CURRENCY/${TIME_INTERVAL}/${CryptoName} -H "Authorization: Bearer xxxxx"', title: "Template Request"}} />
+            <DocumentationRow data={{url:'curl -X GET https://api.gsserviceexchange.online/api/Stock/DIGITAL_CURRENCY/daily/btc -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3VwZXJ1c2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoicmFpbmJvdy11bmljb3JuLWN1c3RvbWVyIiwiZXhwIjoxNjYxNzA5OTg4fQ.0HOpHLFJtKzXUh7MZg4tVED6d_geP-kcRF-9H-zzWmJG1u20qYKeyZitE6xEBfqBVx3dtM0uR3OTU-L2hUNeYQ"',
+              title: "Example Request"}} />
+          </div>
         </div>
       </div>
     </div>
@@ -79,7 +148,7 @@ const index = ({ serviceData }) => {
 
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
-  const serviceData = await axios.get('https://api.gsserviceexchange.online/api/service/13', {
+  const serviceData = await axios.get('https://api.gsserviceexchange.online/api/service/14', {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

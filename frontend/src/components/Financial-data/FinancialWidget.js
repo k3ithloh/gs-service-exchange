@@ -57,7 +57,8 @@ const FinancialWidget = (props) => {
             label: label,
             id: 1,
             data: chartYvalues,
-            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgb(60, 118, 159)',
+            borderColor: 'rgb(60, 118, 159)',
           }
         ],
       }}
