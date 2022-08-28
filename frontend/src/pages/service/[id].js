@@ -231,14 +231,6 @@ export async function getStaticPaths() {
     }
   );
 
-  // return serviceIds.map((serviceId) => {
-  //   return {
-  //     params: {
-  //       id: serviceId
-  //     }
-  //   }
-  // })
-  // const serviceIds = ["1","2","3","4","5","10"];
   const paths = serviceIds.map(serviceId => {
     return {
       params: {
