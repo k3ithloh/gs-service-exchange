@@ -30,7 +30,7 @@ namespace rainbow_unicorn.Controllers
                 .FirstOrDefaultAsync(x => (x.ServiceId == serviceId) && (x.CustomerName == customerName));
             if (newSubscription != null)
                 return Conflict("Subscription already exists for customer.");
-            
+                
             DateTime datePurchased = DateTime.Now;
             var serviceCustomer = new ServiceCustomer(customerName, serviceId, datePurchased, 0);
             await _context.ServiceCustomers.AddAsync(serviceCustomer);
