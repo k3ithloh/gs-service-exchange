@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "rainbow-unicorn",
+    "title": "gs-serviceexchange",
     "version": "1.0"
   },
   "paths": {
