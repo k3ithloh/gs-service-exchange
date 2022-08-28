@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Script from 'next/script'
 import { suggestions } from './constants';
+import axios from 'axios'
 
 const FinancialDataOptionsBar = (props) => {
 
@@ -19,9 +20,6 @@ const FinancialDataOptionsBar = (props) => {
       array = suggestions[securityType].filter((data)=>{
         return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase())
       })
-      // array = array.map((data)=>{
-      //   return `<li onclick="setStockName('${data}')" style="cursor:pointer;">` + data + `</li>`;
-      // })
     }
     checkToShowSuggestions(array);
   }
@@ -41,10 +39,22 @@ const FinancialDataOptionsBar = (props) => {
     }
   }
 
-  function search(){
+  async function search(){
     const data = [stock, securityType, timeRange]
 
     props.parentCallback(data);
+    await axios.post('/api/post_request_auth', {}, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN"),
+        'endpoint': `CustomerStock/${data[0]}/string/${data[2]}/${data[1]}`
+      },
+    }).then(res => {
+      props.success(true);
+    }).catch(err => {
+      if (err.response.data.status == 409){
+        props.success("conflict")
+      }
+    });
   }
 
   return (
@@ -53,8 +63,8 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Securities Type
         </div>
-        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" onChange={({target})=>setSecurityType(target?.value)}>
-          <option selected>Choose the securities</option>
+        <select id="countries" className="rounded-lg w-full p-2.5 border shadow-xl" value="original" onChange={({target})=>setSecurityType(target?.value)}>
+          <option value="original">Choose the securities</option>
           <option value="TIME_SERIES">Equities</option>
           <option value="FX">Forex</option>
           <option value="DIGITAL_CURRENCY">Crypto</option>

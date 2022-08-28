@@ -30,7 +30,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ marketplaceData }) {
-
+  console.log(marketplaceData)
   return (
     <div className="bg-white">
       <Navbar/>

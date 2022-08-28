@@ -253,6 +253,7 @@ export async function getStaticProps({ params }) {
       'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
     }
   }).then(res => {
+    console.log(res.data)
       return res.data;
     }).catch(err => {
       console.log(err);
