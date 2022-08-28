@@ -801,41 +801,41 @@
         ]
       }
     },
-    "/api/Stock": {
+    "/api/Stock/{stocktype}/{interval}/{symbol}": {
       "get": {
         "tags": [
           "Stock"
         ],
-        "summary": "Gets all stocks from external API.",
+        "summary": "Retrieve a stock data from external API.",
+        "parameters": [
+          {
+            "name": "stocktype",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Stock"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Stock"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Stock"
-                  }
-                }
-              }
-            }
+            "description": "Success"
           },
           "401": {
             "description": "Unauthorized"
@@ -856,7 +856,7 @@
         "tags": [
           "Stock"
         ],
-        "summary": "Retrieve a stock base on it's ticker.",
+        "summary": "Retrieve stock type base on it's ticker.",
         "parameters": [
           {
             "name": "ticker",
