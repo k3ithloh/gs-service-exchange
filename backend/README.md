@@ -8,54 +8,54 @@
 🔢 postgresql
 
 ## Run Migrations 🛼
-sh
+```sh
 dotnet ef migrations add <name>
 dotnet ef database update
-
+```
 
 ## Connect to AWS RDS ⚾️
-Add new inbound rule for RDS' security group to allow your own IP.
-Run migration from the last production migration.
-sh
+Add new inbound rule for RDS' security group to allow your own IP.  
+Run migration from the last production migration.  
+```sh
 psql --host=awseb-e-msh2fb35ps-stack-awsebrdsdatabase-5zfcfe7844o3.cewrunjgyijw.ap-southeast-1.rds.amazonaws.com --port=5432 --username=cherylperyl --dbname=postgres    
-
-
+```
+  
 If need to drop db:
-sh
+```sh
 DROP DATABASE <database name>;
-
-
+```
+  
 ## Deployment Pipeline 🏁
-(Let's see if we can automate this)
-
+(Let's see if we can automate this)  
+  
 Run the following commands in the project directory (---/backend) to package our code for deployment.
- sh
+```sh
 dotnet publish -c Release -o deploy
 cd deploy
 zip -r ../deploy_bundle.zip *
-
-Go to Elastic Beanstalk in the AWS Management Console. On the left navbar and click on the following:
-Environments > rainbow-unicorn-api-prod-env > Upload and deploy > Choose File > Select the deploy_bundle.zip you just created.
-
-Version label will be automatically generated, no need to change. Then click Deploy.
-
-Deployment takes around 1-3 mins. After deployment is completed, ensure that Health Status is Ok. You may click the Go to Environment on the left navbar to access the landing page of our api.
-
-If eb-cli is set up in your dir: 
- sh
+```
+Go to Elastic Beanstalk in the AWS Management Console. On the left navbar and click on the following:  
+Environments > rainbow-unicorn-api-prod-env > Upload and deploy > Choose File > Select the deploy_bundle.zip you just created.  
+  
+Version label will be automatically generated, no need to change. Then click Deploy.  
+  
+Deployment takes around 1-3 mins. After deployment is completed, ensure that Health Status is Ok. You may click the Go to Environment on the left navbar to access the landing page of our api.  
+  
+If eb-cli is set up in your dir:  
+```sh
 dotnet publish -c Release -o deploy
 cd deploy
 zip -r ../deploy_bundle.zip *
 eb deploy --staged  # deploy with one line! 🙂
-
+```
 
 ## Database commands for CLI
-List DB `\l`  
-Connect to a DB \c testdb;  
-List all tables in the connect DB \dt
-Show all rows in a table SELECT * FROM "<table_name>";  
-Drop rows in a table DELETE FROM "<table_name>";  
-Terminate other connections SELECT pg_terminate_backend(pg_stat_activity.pid)
+List DB ```\l```  
+Connect to a DB ```\c testdb;```
+List all tables in the connect DB ```\dt``` 
+Show all rows in a table ```SELECT * FROM "<table_name>";```  
+Drop rows in a table ```DELETE FROM "<table_name>";```  
+Terminate other connections ```SELECT pg_terminate_backend(pg_stat_activity.pid)
 FROM pg_stat_activity
 WHERE pg_stat_activity.datname = 'TARGET_DB' -- ← change this to your DB
-AND pid <> pg_backend_pid();
+AND pid <> pg_backend_pid();```  
