@@ -10,7 +10,7 @@ const index = () => {
   return (
     <div>
       <Navbar />
-      <div class="text-lg flex container mx-auto px-4 w-full justify-center my-5 border-b">
+      <div className="text-lg flex container mx-auto px-4 w-full justify-center my-5 border-b">
         <div className="mr-5">
           <div className="" style={{cursor: 'pointer'}}>
             <Link href="/financial-data/overview">Overview</Link>
