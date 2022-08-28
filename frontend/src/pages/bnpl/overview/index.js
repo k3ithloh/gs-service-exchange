@@ -129,9 +129,9 @@ function service({ serviceData }) {
                   {
                     label: 'Average Payback Rate',
                     backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(255, 159, 64)',
-                      'rgb(255, 205, 86)',
+                      'rgb(67, 103, 129)',
+                      'rgb(60, 118, 159)',
+                      'rgb(140, 190, 225)',
                     ],
                     data: [181, 63, 40],
                   }
