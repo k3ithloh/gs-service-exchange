@@ -81,5 +81,22 @@ namespace rainbow_unicorn.Controllers
             
             return Ok(filtered);
         }
+        
+        [HttpGet("getUserPurchases/{customerName}")]
+        [SwaggerOperation(Summary = "Get all the purchases made by users under a Customer.")]
+        public async Task<ActionResult<List<Customer>>> GetUserPurchases(string customerName)
+        {
+            var allPurchases = await _context.UserPurchases
+                // .Include(c=>c.UserPurchases)
+                .Where(c=>c.CustomerName== customerName)
+                .ToListAsync();
+            if (allPurchases == null)
+            {
+                return BadRequest("No User Purchases");
+            }
+
+            return Ok(allPurchases);
+
+        }
     }
 }
