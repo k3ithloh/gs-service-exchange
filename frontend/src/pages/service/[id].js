@@ -3,6 +3,7 @@ import Footer from "../../components/index/footer";
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 function service({ serviceData }) {
   const [serviceId, setServiceId] = useState(serviceData.serviceId);
@@ -22,11 +23,15 @@ function service({ serviceData }) {
       console.log(res.data);
       if (serviceId === 14) {
         router.push('/financial-data/overview');
+      } else if (serviceId === 13) {
+        router.push('/bnpl/overview');
       }
     }).catch(err => {
       console.log(err);
       if (serviceId === 14) {
         router.push('/financial-data/overview');
+      } else if (serviceId === 13) {
+        router.push('/bnpl/overview');
       }
     });
   }
@@ -38,7 +43,7 @@ function service({ serviceData }) {
   
   const hero = (serviceData) => {
     return (
-      <div className="flex bg-grey_100 px-44 py-40">
+      <div className="flex bg-grey_100 px-44 py-20 place-items-center place-content-around">
         <div className="w-3/5 space-y-10">
           <div className="space-y-4">
             <h1 className="text-5xl font-bold text-dark_blue">{serviceData.serviceTitle}</h1>
@@ -59,6 +64,9 @@ function service({ serviceData }) {
             </button>
           </div>
         </div>
+        <div className="relative w-2/5 h-128">
+          <Image alt="service" src="/images/products.svg" layout="fill" objectFit="contain" />
+        </div>
       </div>
     )
   }
@@ -67,7 +75,7 @@ function service({ serviceData }) {
     <>
       <Navbar/>
       {hero(serviceData)}
-      <div className="bg-pale_blue_100 px-44 py-20">
+      <div className="bg-pale_blue_100 px-44 py-5">
         <div className="flex justify-between divide-x divide-green">
             {/* <h3 className="text-2xl font-semibold text-dark_blue">ser</h3> */}
             {serviceData.features.map((feat, index) => {
@@ -82,7 +90,7 @@ function service({ serviceData }) {
       </div>
 
       <div className="flex justify-center">
-        <div className="mx-44 flex flex-col pt-20 w-1/5 items-center content-center self-center space-y-4">
+        <div className="mx-44 flex flex-col w-1/5 items-center content-center self-center space-y-4">
             <h3 className="font-semibold text-dark_blue text-center text-3xl">Reviews</h3>
             <a className="bg-dark_blue w-56 h-1 border-dark_blue border flex-grow"></a>
         </div>
