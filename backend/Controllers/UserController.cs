@@ -40,6 +40,11 @@ namespace rainbow_unicorn.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<List<User>>> AddUser(User user)
         {
+            var newUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserId == user.UserId);
+            if (newUser != null)
+                return Conflict("User already exists");
+            
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 

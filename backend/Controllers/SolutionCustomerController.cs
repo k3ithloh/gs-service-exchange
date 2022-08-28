@@ -26,6 +26,11 @@ namespace rainbow_unicorn.Controllers
         [SwaggerOperation("Adds a new subscription for a customer.")]
         public async Task<ActionResult<List<ServiceCustomer>>> AddSubscription(int serviceId, string customerName)
         {
+            var newSubscription = await _context.ServiceCustomers
+                .FirstOrDefaultAsync(x => (x.ServiceId == serviceId) && (x.CustomerName == customerName));
+            if (newSubscription != null)
+                return Conflict("Subscription already exists for customer.");
+            
             DateTime datePurchased = DateTime.Now;
             var serviceCustomer = new ServiceCustomer(customerName, serviceId, datePurchased, 0);
             await _context.ServiceCustomers.AddAsync(serviceCustomer);

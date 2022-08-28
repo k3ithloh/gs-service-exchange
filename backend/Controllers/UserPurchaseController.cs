@@ -38,6 +38,10 @@ namespace rainbow_unicorn.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<List<UserPurchase>>> AddUser(UserPurchase userpurchase)
         {
+            var userPurchase = await _context.UserPurchases
+                .FirstOrDefaultAsync(u=>u.PurchaseId == userpurchase.PurchaseId);
+            if (userPurchase != null)
+                return Conflict("UserPurchase already exists");
             await _context.UserPurchases.AddAsync(userpurchase);
             await _context.SaveChangesAsync();
 
