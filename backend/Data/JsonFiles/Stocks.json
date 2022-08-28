@@ -1,22 +1,22 @@
 [
   {
     "Ticker": "META",
-    "StockName": "Meta"
+    "StockType": "Technology"
   },
   {
     "Ticker": "AMZN",
-    "StockName": "Amazon"
+    "StockType": "Technology"
   },
   {
     "Ticker": "AAPL",
-    "StockName": "Apple"
+    "StockType": "Technology"
   },
   {
     "Ticker": "NFLX",
-    "StockName": "Netflix"
+    "StockType": "Technology"
   },
   {
     "Ticker": "GOOGL",
-    "StockName": "Google"
+    "StockType": "Technology"
   }
 ]

@@ -9,7 +9,7 @@ public class StockMap : BaseMap<Stock>
     {
         builder.HasKey(e => e.Ticker);
         builder.Property(e => e.Ticker).IsRequired();
-        builder.Property(e => e.StockName).IsRequired();
+        builder.Property(e => e.StockType).IsRequired();
         
         builder.HasMany(e => e.CustomerStocks)
             .WithOne(e => e.Stock)
