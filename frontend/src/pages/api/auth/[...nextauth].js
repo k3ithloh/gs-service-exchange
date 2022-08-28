@@ -28,9 +28,6 @@ export default NextAuth({
           body: {customerName: credentials.customerName, password: credentials.password},
           headers: { "Content-Type": "application/json-patch+json" }
         }).then(res => console.log(res))
-        // console.log(res.json())
-        // console.log(await res)
-        // const user = await res.json()
         return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
       }
     })
