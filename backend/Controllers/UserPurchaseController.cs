@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rainbow_unicorn.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace rainbow_unicorn.Controllers
 
@@ -35,8 +36,9 @@ namespace rainbow_unicorn.Controllers
 
         // Add a new UserPurchase
         [HttpPost]
+        [SwaggerOperation(Summary = "Add new purchase made by a user.")]
         // [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult<List<UserPurchase>>> AddUser(UserPurchase userpurchase)
+        public async Task<ActionResult<List<UserPurchase>>> AddUser(int purchaseId, string customerName, )
         {
             var userPurchase = await _context.UserPurchases
                 .FirstOrDefaultAsync(u=>u.PurchaseId == userpurchase.PurchaseId);
