@@ -6,7 +6,7 @@ import Image from "next/image";
 import axios from 'axios';
 
 export async function getStaticProps() {
-  const marketplaceData = await axios.get('https://api.gsserviceexchange.online/api/Customer/getStocks/string', {
+  const marketplaceData = await axios.get('https://api.gsserviceexchange.online/api/CustomerStock/getCustomerStocks/string', {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
