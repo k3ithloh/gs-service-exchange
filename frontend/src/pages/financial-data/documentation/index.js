@@ -3,6 +3,7 @@ import { DocumentationRow } from '../../../components/Financial-data/Documentati
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../../../components/index/navbar';
+import Footer from '../../../components/index/footer';
 import axios from 'axios';
 
 const index = ({ serviceData }) => {
