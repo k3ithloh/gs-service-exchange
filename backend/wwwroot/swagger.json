@@ -347,6 +347,66 @@
         ]
       }
     },
+    "/api/Customer/getUserPurchases/{customerName}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get all the purchases made by users under a Customer.",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
     "/api/CustomerStock/{ticker}/{customerName}/{interval}/{stockType}": {
       "post": {
         "tags": [
@@ -801,6 +861,66 @@
         ]
       }
     },
+    "/api/ServiceCustomer/CheckSubscription/{customerName}/{serviceId}": {
+      "get": {
+        "tags": [
+          "ServiceCustomer"
+        ],
+        "summary": "Returns a bool to indicate if a customer is already subscribed to the service.",
+        "parameters": [
+          {
+            "name": "serviceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "customerName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
     "/api/Stock/{stocktype}/{interval}/{symbol}": {
       "get": {
         "tags": [
@@ -1050,7 +1170,67 @@
         "tags": [
           "UserPayment"
         ],
-        "summary": "Get an array of payments for purchase",
+        "summary": "Get an all payments related to a purchase.",
+        "parameters": [
+          {
+            "name": "purchaseid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPayment"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPayment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPayment"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/UserPayment/paid/{purchaseid}": {
+      "put": {
+        "tags": [
+          "UserPayment"
+        ],
+        "summary": "Mark a payment as paid.",
         "parameters": [
           {
             "name": "purchaseid",
@@ -1110,6 +1290,7 @@
         "tags": [
           "UserPurchase"
         ],
+        "summary": "Get a specific User Purchase",
         "parameters": [
           {
             "name": "purchaseid",
@@ -1169,26 +1350,27 @@
         "tags": [
           "UserPurchase"
         ],
+        "summary": "Add new purchase made by a user.",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPurchase"
+                "$ref": "#/components/schemas/UserPurchaseDto"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPurchase"
+                "$ref": "#/components/schemas/UserPurchaseDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPurchase"
+                "$ref": "#/components/schemas/UserPurchaseDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserPurchase"
+                "$ref": "#/components/schemas/UserPurchaseDto"
               }
             }
           }
@@ -1218,69 +1400,6 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/UserPurchase"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "UserPurchase"
-        ],
-        "parameters": [
-          {
-            "name": "userid",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "customername",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
                   }
                 }
               }
@@ -1643,6 +1762,28 @@
               "$ref": "#/components/schemas/UserPayment"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPurchaseDto": {
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchaseAmount": {
+            "type": "number",
+            "format": "float"
+          },
+          "numberOfPayments": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
