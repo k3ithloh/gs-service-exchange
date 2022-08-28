@@ -3,6 +3,7 @@ using Korzh.EasyQuery.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Newtonsoft.Json;
 using rainbow_unicorn.Data;
 using Swashbuckle.AspNetCore.Annotations;
@@ -45,8 +46,9 @@ namespace rainbow_unicorn.Controllers
                 sr.Close();
             }
 
-            if (strResultTest == null)
-                return BadRequest("Stock data not found. Check your inputs and ensure they are in CAPS. This API only works for timeRange=DAILY|MONTHLY|WEEKLY and stockType=TIME_SERIES|FX|DIGITAL_CURRENCY");
+            
+            if (strResultTest.Contains("Error Message"))
+                return BadRequest("Stock data not found. Check your inputs. This API only accepts the following values timeRange=DAILY|MONTHLY|WEEKLY and stockType=TIME_SERIES|FX|DIGITAL_CURRENCY");
             // JObject json = JObject.Parse(strResultTest);
             
             return Ok(strResultTest);
