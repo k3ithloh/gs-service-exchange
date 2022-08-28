@@ -85,9 +85,8 @@ function service({ serviceData }) {
     <>
       <Navbar/>
       {hero(serviceData)}
-      <div className="bg-pale_blue_100 px-44 py-5">
+      <div className="bg-pale_blue_100 px-44 py-20">
         <div className="flex justify-between divide-x divide-green">
-            {/* <h3 className="text-2xl font-semibold text-dark_blue">ser</h3> */}
             {serviceData.features.map((feat, index) => {
               return (
                 <div key={index} className="px-10 w-1/3">
@@ -124,8 +123,8 @@ function service({ serviceData }) {
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFB75D"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFB75D"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFB75D"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            <div className="w-48 bg-green"></div>
-            <p className="font-light">100%</p>
+            <div className="w-48 bg-grey_400"></div>
+            <p className="font-light">0%</p>
           </div>
           <div className="flex space-x-1">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>

@@ -1,4 +1,5 @@
 import Navbar from "../../../components/index/navbar";
+import Footer from "../../../components/index/footer";
 import FinancialData from "../../../components/Financial-data/FinancialData";
 import Link from "next/link";
 import Image from "next/image";
@@ -83,6 +84,7 @@ const index = ({marketplaceData, serviceData}) => {
       <div className="flex">
         <FinancialData marketplaceData={marketplaceData}/>
       </div>
+      <Footer/>
     </div>
   );
 };

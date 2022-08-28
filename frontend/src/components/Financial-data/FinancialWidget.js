@@ -9,9 +9,9 @@ const FinancialWidget = (props) => {
   const [chartXvalues, setChartXvalues] = useState([]);
   const [chartYvalues, setChartYvalues] = useState([]);
   const [label, setLabel] = useState();
-  const stock = props.data[0];
-  const securityType = props.data[1];
-  const timeRange = props.data[2];
+  const stock = props.data.ticker;
+  const securityType = props.data.stockType;
+  const timeRange = props.data.interval;
 
   useEffect(()=>{
     let url = "";
@@ -41,8 +41,8 @@ const FinancialWidget = (props) => {
           yValues.push(data[getDataKey][key]["1. open"])
         }
 
-        setChartXvalues(xValues);
-        setChartYvalues(yValues);
+        setChartXvalues(xValues.reverse());
+        setChartYvalues(yValues.reverse());
       })
   }, [])
 

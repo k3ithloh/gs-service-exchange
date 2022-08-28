@@ -142,6 +142,7 @@ const index = ({ serviceData }) => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }
