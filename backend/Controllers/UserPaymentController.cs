@@ -43,6 +43,8 @@ namespace rainbow_unicorn.Controllers
                 return BadRequest("All Payments have been made");
 
             userPayment.Fulfilled = true;
+            userPayment.PaymentDate = DateTime.Now;
+            
             await _context.SaveChangesAsync();
             return Ok(userPayment);
         }

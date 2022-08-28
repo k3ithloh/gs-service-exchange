@@ -33,38 +33,7 @@ namespace rainbow_unicorn.Controllers
                 return BadRequest("No Users found");
             return Ok(user);
         }
-
-        // Add a new User when user makes a payment
-        // user id needs to be randomly generated, customername, get from frontend, datetime auto generate
-        [HttpPost]
-        [SwaggerOperation(Summary = "Add new user when user makes a purchase")]
-        // [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult<List<User>>> AddUser(User user)
-        {
-            var newUser = await _context.Users
-                .FirstOrDefaultAsync(u => u.UserId == user.UserId);
-            if (newUser != null)
-                return Conflict("User already exists");
-            
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.Users.ToListAsync());
-        }
         
-        //Delete a User
-        [HttpDelete]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult<List<User>>> DeleteUser(string userid)
-        {
-            var user = await _context.Users.FindAsync(userid);
-            if (user == null)
-                return BadRequest("No Users found.");
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Users.ToListAsync());
-        }
-
         [HttpGet("purchase/{userid}")]
         [SwaggerOperation(Summary = "Get an array of purchases by user")]
         public async Task<ActionResult<List<User>>> GetUserPurchases(string userid)
@@ -74,8 +43,37 @@ namespace rainbow_unicorn.Controllers
                 .FirstOrDefaultAsync(u=>u.UserId == userid);
             if (user == null)
                 return BadRequest("User has no purchases");
-            return Ok(user);
+            return Ok(user.UserPurchases);
         }
+
+        // Add a new User when user makes a payment
+        // user id needs to be randomly generated, customername, get from frontend, datetime auto generate
+        // [HttpPost]
+        // [SwaggerOperation(Summary = "Add new user when user makes a purchase")]
+        // [ApiExplorerSettings(IgnoreApi = true)]
+        // public async Task<ActionResult<List<User>>> AddUser(string userId, string customerName)
+        // {
+        //     var user = new User(userId, customerName, DateTime.Now);
+        //     await _context.Users.AddAsync(user);
+        //     await _context.SaveChangesAsync();
+        //
+        //     return Ok(await _context.Users.ToListAsync());
+        // }
+        
+        //Delete a User
+        // [HttpDelete]
+        // [ApiExplorerSettings(IgnoreApi = true)]
+        // public async Task<ActionResult<List<User>>> DeleteUser(string userid)
+        // {
+        //     var user = await _context.Users.FindAsync(userid);
+        //     if (user == null)
+        //         return BadRequest("No Users found.");
+        //     _context.Users.Remove(user);
+        //     await _context.SaveChangesAsync();
+        //     return Ok(await _context.Users.ToListAsync());
+        // }
+
+        
         
     }
 }

@@ -50,5 +50,19 @@ namespace rainbow_unicorn.Controllers
                 return true;
             return false;
         }
+        
+        [HttpGet("GetAllSubscriptions/{customerName}")]
+        [SwaggerOperation("Get all the services that a Customer subscribed to.")]
+        public async Task<ActionResult<bool>> GetAllSubscriptions(string customerName)
+        {
+            var subscription = await _context.ServiceCustomers
+                .Where(x => x.CustomerName == customerName)
+                .Include(x=>x.Service)
+                .ToListAsync();
+            
+            if (subscription == null)
+                return BadRequest("Customer did not subscribe to any service");
+            return Ok(subscription);
+        }
     }
 }

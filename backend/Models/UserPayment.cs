@@ -9,14 +9,13 @@ public class UserPayment
         
     }
 
-    public UserPayment(string purchaseId, int paymentNumber, float amount, bool fulfilled, DateTime dueDate, DateTime paymentDate)
+    public UserPayment(string purchaseId, int paymentNumber, float amount, bool fulfilled, DateTime dueDate)
     {
         PurchaseId = purchaseId;
         PaymentNumber = paymentNumber;
         Amount = amount;
         Fulfilled = fulfilled;
         DueDate = dueDate;
-        PaymentDate = paymentDate;
     }
     
     [ForeignKey("UserPurchase")]

@@ -21,6 +21,28 @@ namespace rainbow_unicorn.Controllers
             _context = context;
         }
 
+        [HttpGet("getCustomerStocks/{customerName}")]
+        [SwaggerOperation("Get all the stocks that a Customer added to their dashboard.")]
+        public async Task<ActionResult<List<Customer>>> GetStocks(string customerName)
+        {
+            var allRecords = await _context.CustomerStocks
+                .ToListAsync();
+            
+            var filtered = new List<CustomerStock>();
+            
+            foreach(var record in allRecords)
+            {
+                if (record.CustomerName == customerName)
+                {
+                    filtered.Add(record);
+                }
+            }
+            if (filtered.Count == 0)
+                return BadRequest("Customer has no stocks on their dashboard.");
+            
+            return Ok(filtered);
+        }
+
         [HttpPost("{ticker}/{customerName}/{interval}/{stockType}")]
         [SwaggerOperation("Adds a stock to customer dashboard.")]
         public async Task<ActionResult<List<CustomerStock>>> AddStockToDashboard(string ticker, string customerName, string interval, string stockType)

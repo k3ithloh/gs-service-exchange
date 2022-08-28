@@ -47,11 +47,12 @@ namespace rainbow_unicorn.Controllers
 
             customerService.AmountPayable = customerService.AmountPayable + userPurchaseDto.PurchaseAmount;
                     
+            
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.UserId == userPurchaseDto.UserId);
             if (user == null)
             {
-                user = new User(userPurchaseDto.UserId, userPurchaseDto.CustomerName, DateTime.Now);
+                user = new User(userPurchaseDto.UserId, userPurchaseDto.CustomerName, userPurchaseDto.PurchaseDate);
                 await _context.Users.AddAsync(user);
             }
 
@@ -62,7 +63,7 @@ namespace rainbow_unicorn.Controllers
                 purchaseId = GenerateId();
             }
             var purchase = new UserPurchase(purchaseId, 
-                DateTime.Now, 
+                userPurchaseDto.PurchaseDate,
                 userPurchaseDto.CustomerName, 
                 userPurchaseDto.UserId, 
                 userPurchaseDto.PurchaseAmount, 
@@ -75,7 +76,8 @@ namespace rainbow_unicorn.Controllers
 
             for (int i = 1; i <= userPurchaseDto.NumberOfPayments; i++)
             {
-                var payment = new UserPayment(purchaseId, i, paymentAmount, false);
+                DateTime duedate = DateTime.Now.AddDays(90);
+                var payment = new UserPayment(purchaseId, i, paymentAmount, false, duedate);
                 await _context.UserPayments.AddAsync(payment);
             }
 
@@ -83,19 +85,6 @@ namespace rainbow_unicorn.Controllers
 
             return Ok(await _context.UserPurchases.ToListAsync());
         }
-
-        // //Delete a User
-        // [HttpDelete]
-        // // [ApiExplorerSettings(IgnoreApi = true)]
-        // public async Task<ActionResult<List<User>>> DeleteUser(string userid, string customername)
-        // {
-        //     var user = await _context.Users.FindAsync(userid, customername);
-        //     if (user == null)
-        //         return BadRequest("No Users found.");
-        //     _context.Users.Remove(user);
-        //     await _context.SaveChangesAsync();
-        //     return Ok(await _context.Users.ToListAsync());
-        // }
 
         private string GenerateId()
         {

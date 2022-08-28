@@ -5,7 +5,6 @@ namespace rainbow_unicorn;
 public class UserPaymentDto
 {
     public string PurchaseId { get; set; }
-    [Key]
     public int PaymentNumber { get; set; }
     public float Amount { get; set; }
     public bool Fulfilled { get; set; }
