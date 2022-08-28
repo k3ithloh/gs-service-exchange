@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "gs-serviceexchange",
+    "title": "rainbow-unicorn",
     "version": "1.0"
   },
   "paths": {
@@ -173,66 +173,6 @@
         ]
       }
     },
-    "/api/Customer/getCustomerServices/{customerName}": {
-      "get": {
-        "tags": [
-          "Customer"
-        ],
-        "summary": "Get all the services that a Customer subscribed to.",
-        "parameters": [
-          {
-            "name": "customerName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Customer"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Customer"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Customer"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      }
-    },
     "/api/Customer/getNumberOfUsers/{customerName}": {
       "get": {
         "tags": [
@@ -287,12 +227,12 @@
         ]
       }
     },
-    "/api/Customer/getStocks/{customerName}": {
+    "/api/Customer/getUserPurchases/{customerName}": {
       "get": {
         "tags": [
           "Customer"
         ],
-        "summary": "Get all the stocks that a Customer added to their dashboard.",
+        "summary": "Get all the purchases made by users under a Customer.",
         "parameters": [
           {
             "name": "customerName",
@@ -347,12 +287,72 @@
         ]
       }
     },
-    "/api/Customer/getUserPurchases/{customerName}": {
+    "/api/Customer/GetUserPayments/{customerName}": {
       "get": {
         "tags": [
           "Customer"
         ],
-        "summary": "Get all the purchases made by users under a Customer.",
+        "summary": "Get all payments made by users under a Customer.",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/CustomerStock/getCustomerStocks/{customerName}": {
+      "get": {
+        "tags": [
+          "CustomerStock"
+        ],
+        "summary": "Get all the stocks that a Customer added to their dashboard.",
         "parameters": [
           {
             "name": "customerName",
@@ -921,6 +921,57 @@
         ]
       }
     },
+    "/api/ServiceCustomer/GetAllSubscriptions/{customerName}": {
+      "get": {
+        "tags": [
+          "ServiceCustomer"
+        ],
+        "summary": "Get all the services that a Customer subscribed to.",
+        "parameters": [
+          {
+            "name": "customerName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
     "/api/Stock/{stocktype}/{interval}/{symbol}": {
       "get": {
         "tags": [
@@ -987,80 +1038,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      }
-    },
-    "/api/User": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Add new user when user makes a purchase",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success",
@@ -1717,6 +1694,15 @@
           "fulfilled": {
             "type": "boolean"
           },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "userPurchase": {
             "$ref": "#/components/schemas/UserPurchase"
           }
@@ -1784,6 +1770,10 @@
           "numberOfPayments": {
             "type": "integer",
             "format": "int32"
+          },
+          "purchaseDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
