@@ -23,7 +23,7 @@ const FinancialWidget = (props) => {
       setLabel(`Cryptocurrency: ${timeRange} range of ${stock}`)
     } else {
       url = `https://www.alphavantage.co/query?function=TIME_SERIES_${timeRange}&symbol=${stock}&outputsize=compact&apikey=${API_KEY}`;
-      setLabel(`Equity ${timeRange} range of ${stock}`)
+      setLabel(`Equity: ${timeRange} range of ${stock}`)
     }
     
     let yValues = [];

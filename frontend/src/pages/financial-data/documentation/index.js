@@ -5,7 +5,19 @@ import Navbar from '../../../components/index/navbar';
 
 const index = () => {
 
-  const [api, setApi] = useState(['lalala', 'aalflafe', 'afiehifwf']);
+  const [api, setApi] = useState([{
+    url: 'https://api.gsserviceexchange.online/api/Stock/TIME_SERIES/DAILY/${EquityName}',
+    title: "Equities"
+  },
+  {
+    url: 'https://api.gsserviceexchange.online/api/Stock/FX/DAILY/${ForexName}',
+    title: "Forex"
+  },
+  {
+    url: 'https://api.gsserviceexchange.online/api/Stock/DIGITAL_CURRENCY/DAILY/${CryptoName}',
+    title: 'Crypto'
+  }
+  ]);
 
   return (
     <div>
