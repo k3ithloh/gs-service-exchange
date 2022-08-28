@@ -21,9 +21,9 @@ namespace rainbow_unicorn.Controllers
             _context = context;
         }
 
-        [HttpPost("{ticker}/{customerName}/{interval}/{stockName}")]
+        [HttpPost("{ticker}/{customerName}/{interval}/{stockType}")]
         [SwaggerOperation("Adds a stock to customer dashboard.")]
-        public async Task<ActionResult<List<CustomerStock>>> AddStockToDashboard(string ticker, string customerName, string interval, string stockName)
+        public async Task<ActionResult<List<CustomerStock>>> AddStockToDashboard(string ticker, string customerName, string interval, string stockType)
         {
             var customerStock = await _context.CustomerStocks
                 .FirstOrDefaultAsync(cs => (cs.Ticker == ticker) && (cs.CustomerName == customerName));
@@ -35,7 +35,7 @@ namespace rainbow_unicorn.Controllers
                 .FirstOrDefaultAsync(b=>b.Ticker == ticker);
             if (stock == null)
             {
-                var newStock = new Stock(ticker, stockName);
+                var newStock = new Stock(ticker, stockType);
                 await _context.Stocks.AddAsync(newStock);
             }
             await _context.CustomerStocks.AddAsync(customerStock);

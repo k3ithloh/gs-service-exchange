@@ -14,19 +14,20 @@ namespace rainbow_unicorn.Controllers
     public class StockController : ControllerBase
     {
         private readonly DataContext _context;
-
-        // constructor
+        static string _address = "https://www.alphavantage.co/query?function=FX_${timeRange}&from_symbol=${stock}&to_symbol=USD&outputsize=compact&apikey=${API_KEY}";
+        private string result;
         public StockController(DataContext context)
         {
             _context = context;
         }
 
-
         // Get all Stocks
         [HttpGet]
-        [SwaggerOperation("Gets all stocks that is stored in our DB.")]
+        [SwaggerOperation("Gets all stocks from external API.")]
         public async Task<ActionResult<List<Stock>>> Get()
         {
+            // GetResponse();
+            // return new string[] { result, "value2" };
             return Ok(await _context.Stocks
                 .ToListAsync());
         }
@@ -42,6 +43,14 @@ namespace rainbow_unicorn.Controllers
             if (stock == null)
                 return BadRequest("Stock not found.");
             return Ok(stock);
+        }
+        
+        private async void GetResponse()
+        {
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(_address);
+            response.EnsureSuccessStatusCode();
+            result = await response.Content.ReadAsStringAsync();
         }
 
 
@@ -67,7 +76,7 @@ namespace rainbow_unicorn.Controllers
         //         return BadRequest("Stock not found.");
         //
         //     stock.Ticker = request.Ticker;
-        //     stock.StockName = request.StockName;
+        //     stock.StockType = request.StockType;
         //
         //     await _context.SaveChangesAsync();
         //
