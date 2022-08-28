@@ -27,7 +27,8 @@ namespace rainbow_unicorn.Controllers
         public async Task<ActionResult<List<User>>> GetCustomerUser(string customerName)
         {
             var user = await _context.Users
-                .FirstOrDefaultAsync(u=>u.CustomerName == customerName);
+                .Where(u => u.CustomerName == customerName)
+                .ToListAsync();
             if (user == null)
                 return BadRequest("No Users found");
             return Ok(user);
