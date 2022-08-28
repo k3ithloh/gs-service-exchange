@@ -23,7 +23,7 @@ public class ServiceCustomer
     public DateTime DatePurchased { get; set; }
     public float AmountPayable { get; set; }
     
-    public virtual Customer Customer { get; set; }
+    public virtual Customer? Customer { get; set; }
  
-    public virtual Service Service { get; set; }
+    public virtual Service? Service { get; set; }
 }
