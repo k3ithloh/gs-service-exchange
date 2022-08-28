@@ -347,7 +347,7 @@
         ]
       }
     },
-    "/api/CustomerStock/{ticker}/{customerName}/{interval}/{stockName}": {
+    "/api/CustomerStock/{ticker}/{customerName}/{interval}/{stockType}": {
       "post": {
         "tags": [
           "CustomerStock"
@@ -379,7 +379,7 @@
             }
           },
           {
-            "name": "stockName",
+            "name": "stockType",
             "in": "path",
             "required": true,
             "schema": {
@@ -806,7 +806,7 @@
         "tags": [
           "Stock"
         ],
-        "summary": "Gets all stocks that is stored in our DB.",
+        "summary": "Gets all stocks from external API.",
         "responses": {
           "200": {
             "description": "Success",
@@ -1349,7 +1349,7 @@
             "type": "string",
             "nullable": true
           },
-          "stockName": {
+          "stockType": {
             "type": "string",
             "nullable": true
           },

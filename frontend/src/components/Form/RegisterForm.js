@@ -95,11 +95,11 @@ const LoginForm = () => {
           <input className="shadow appearance-none border bg-white rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={({target})=>setPassword(target?.value)}/>
         </div>
         <div className="flex items-center justify-between mb-2">
-            <button className="bg-blue hover:bg-dark_blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={()=>Register()}>
+            <button style={{backgroundColor:'grey'}} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={()=>Register()}>
                 Register
             </button>
         </div>
-        { isError ? <p className="text-red-500 text-xs italic">Please type in the correct username or password</p> : ''}
+        { isError ? <p className="text-red-500 text-xs italic" style={{color: 'red'}}>Please type in the correct username or password</p> : ''}
         <Link href="/login" className="text-blue-500 text-xs">Have an account? Login here</Link>
     </form>
     </div>

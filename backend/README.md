@@ -52,5 +52,10 @@ eb deploy --staged  # deploy with one line! :)
 ## Database commands for CLI
 List DB ``\l``  
 Connect to a DB ```\c testdb;```  
+List all tables in the connect DB ```\dt```
 Show all rows in a table ```SELECT * FROM "<table_name>";```  
 Drop rows in a table ```DELETE FROM "<table_name>";```  
+Terminate other connections ```SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'TARGET_DB' -- ← change this to your DB
+AND pid <> pg_backend_pid();```

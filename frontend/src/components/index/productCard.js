@@ -27,16 +27,28 @@ const renderRating = (rating) => {
   )
 }
 
+const renderNew = (isNew) => {
+  if (isNew) {
+    return (
+      <div className="rounded-3xl bg-green text-white py-1 px-4 place-content-center">
+        NEW
+      </div>
+    )
+  } else {
+    return (
+      <></>
+    )
+  }
+}
+
 export default function productCard(product) {
   return (
-    <div className="flex flex-col shadow-md shadow-grey_400 mix-blend-difference bg-blend-multiply rounded-lg p-10 w-almost_half space-y-10 my-10 justify-between">
+    <div className="flex flex-col shadow-md shadow-grey_400 rounded-lg p-10 w-almost_half space-y-10 my-10 justify-between">
       <div className="space-y-10">
         <div className='space-y-4'>
           <div className="flex gap-x-4 place-content-center justify-start">
             <h3 className="font-semibold text-2xl">{product.serviceTitle}</h3>
-            <div className="rounded-3xl bg-green text-white py-1 px-4 place-content-center">
-              NEW
-            </div>
+            {renderNew(product.new)}
           </div>
           <div className="flex gap-4">
             {renderRating(product.rating)}
