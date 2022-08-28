@@ -10,8 +10,8 @@ export const DocumentationRow = (props) => {
   }
 
   return (
-    <div className='w-full my-6 mx-auto container' style={{height: '45px'}}>
-      <div class="text-xl">
+    <div className='my-6 w-full container space-y-4' style={{height: '45px'}}>
+      <div class="text-xl font-semibold text-grey_600">
         {props.data.title}
       </div>
       <div className="relative text-gray-600 focus-within:text-gray-400">
