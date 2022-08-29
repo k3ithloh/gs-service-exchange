@@ -19,4 +19,3 @@ Combining the best of serverless edge networks and load-balanced servers to mini
 
 - Database:
   - SQL database on AWS RDS
-
