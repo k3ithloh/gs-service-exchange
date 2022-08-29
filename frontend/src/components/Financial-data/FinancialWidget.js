@@ -8,7 +8,7 @@ const FinancialWidget = (props) => {
   
   const [chartXvalues, setChartXvalues] = useState([]);
   const [chartYvalues, setChartYvalues] = useState([]);
-  const [label, setLabel] = useState();
+  const [label, setLabel] = useState()
   const stock = props.data.ticker;
   const securityType = props.data.stockType;
   const timeRange = props.data.interval;
