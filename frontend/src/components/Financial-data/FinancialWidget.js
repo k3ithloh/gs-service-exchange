@@ -4,8 +4,6 @@ import Chart from 'chart.js/auto'
 
 const FinancialWidget = (props) => {
 
-  const API_KEY = "ZXC9PLPBQPNDW0GR"
-  
   const [chartXvalues, setChartXvalues] = useState([]);
   const [chartYvalues, setChartYvalues] = useState([]);
   const [label, setLabel] = useState()
@@ -16,13 +14,13 @@ const FinancialWidget = (props) => {
   useEffect(()=>{
     let url = "";
     if (securityType == "FX"){
-      url = `https://www.alphavantage.co/query?function=FX_${timeRange}&from_symbol=${stock}&to_symbol=USD&outputsize=compact&apikey=${API_KEY}`;
+      url = `https://www.alphavantage.co/query?function=FX_${timeRange}&from_symbol=${stock}&to_symbol=USD&outputsize=compact&apikey=${process.env.API_KEY}`;
       setLabel(`Forex: ${timeRange} range of ${stock} to USD`)
     } else if (securityType == "DIGITAL_CURRENCY"){
-      url = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_${timeRange}&symbol=${stock}&market=USD&outputsize=compact&apikey=${API_KEY}`;
+      url = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_${timeRange}&symbol=${stock}&market=USD&outputsize=compact&apikey=${process.env.API_KEY}`;
       setLabel(`Cryptocurrency: ${timeRange} range of ${stock}`)
     } else {
-      url = `https://www.alphavantage.co/query?function=TIME_SERIES_${timeRange}&symbol=${stock}&outputsize=compact&apikey=${API_KEY}`;
+      url = `https://www.alphavantage.co/query?function=TIME_SERIES_${timeRange}&symbol=${stock}&outputsize=compact&apikey=${process.env.API_KEY}`;
       setLabel(`Equity: ${timeRange} range of ${stock}`)
     }
     
