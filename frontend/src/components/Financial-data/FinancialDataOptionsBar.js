@@ -7,8 +7,8 @@ const FinancialDataOptionsBar = (props) => {
 
   const [stock, setStock] = useState();
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [securityType, setSecurityType] = useState("");
-  const [timeRange, setTimeRange] = useState("");
+  const [securityType, setSecurityType] = useState("original");
+  const [timeRange, setTimeRange] = useState("original");
   const [suggestion, setSuggestions] = useState([]);
 
   function filterStockOptions(value){
@@ -55,6 +55,9 @@ const FinancialDataOptionsBar = (props) => {
         props.success("conflict")
       }
     });
+    setStock();
+    setSecurityType("original");
+    setTimeRange("original");
   }
 
   return (
@@ -63,7 +66,7 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Asset Class
         </div>
-        <select id="countries" className="rounded-xl w-full p-3 border border-blue" value="original" onChange={({target})=>setSecurityType(target?.value)}>
+        <select id="countries" className="rounded-xl w-full p-3 border border-blue" value={securityType} onChange={({target})=>setSecurityType(target?.value)}>
           <option value="original">Choose the asset class</option>
           <option value="TIME_SERIES">Equities</option>
           <option value="FX">Forex</option>
@@ -76,7 +79,7 @@ const FinancialDataOptionsBar = (props) => {
           Search Ticker
         </div>
         <div className={showSuggestions ? 'search-input active' : 'search-input'}>
-          <input type="text" id="stock" placeholder='Type to search..' value={stock} onKeyUp={({target})=>filterStockOptions(target?.value)}/>
+          <input type="text" id="stock" placeholder='Type to search..' value={stock} onChange={({target})=>filterStockOptions(target?.value)}/>
           <div className='autocom-box' id="box">
             {
               suggestion.map((data, key)=>{
@@ -92,8 +95,8 @@ const FinancialDataOptionsBar = (props) => {
         <div className="block text-gray-700 text-sm font-bold my-auto" htmlFor="password">
           Time In
         </div>
-        <select id="countries" className="rounded-xl w-full p-3 border border-blue" onChange={({target})=>setTimeRange(target?.value)}>
-          <option selected>Choose the time in</option>
+        <select id="countries" className="rounded-xl w-full p-3 border border-blue" value={timeRange} onChange={({target})=>setTimeRange(target?.value)}>
+          <option value="original">Choose the time in</option>
           <option value="DAILY">Daily</option>
           <option value="WEEKLY">Weekly</option>
           <option value="MONTHLY">Monthly</option>

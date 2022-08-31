@@ -9,9 +9,9 @@ const FinancialWidget = (props) => {
   const [chartXvalues, setChartXvalues] = useState([]);
   const [chartYvalues, setChartYvalues] = useState([]);
   const [label, setLabel] = useState()
-  const stock = props.data.ticker;
-  const securityType = props.data.stockType;
-  const timeRange = props.data.interval;
+  const stock = props.data.ticker || props.data[0];
+  const securityType = props.data.stockType || props.data[1];
+  const timeRange = props.data.interval || props.data[2];
 
   useEffect(()=>{
     let url = "";
